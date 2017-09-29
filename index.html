@@ -174,7 +174,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
-            Startseite
+            Home
           </a>
         </li>
       
@@ -184,7 +184,7 @@
             
               <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
             
-            Archiv
+            Archives
           </a>
         </li>
       
@@ -250,7 +250,7 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Veröffentlicht am</span>
+                <span class="post-meta-item-text">Posted on</span>
               
               <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-09-29T12:39:43+08:00">
                 2017-09-29
@@ -292,13 +292,14 @@
       
         
           
-            <h2 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h2><p>在搭建博客开始之前，您必须有做好以下准备工作</p>
+            <p><em>自己也算是摸爬滚打搭建成功，然后自己再重新安装部署一遍，把完整步骤分享给大家。</em></p>
+<h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>在搭建博客开始之前，您必须做好以下准备工作</p>
 <ul>
-<li>安装了nodejs，npm，都是傻瓜式安装，此处不再赘述。</li>
+<li>安装了nodejs、npm，傻瓜式安装即可，此处不再赘述。</li>
 <li>安装了<a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a>，git bash可打开黑窗口</li>
 <li>在GitHub上注册一个账号，并配置SSH key</li>
 </ul>
-<h2 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h2><blockquote>
+<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><blockquote>
 <p>$ npm install -g hexo</p>
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/1.png" alt=""><br>在电脑上创建一个hexo的文件夹，我的是在E盘下，E:\hexo，在Hexo文件下，右键运行Git Bash，进行初始化</p>
@@ -310,13 +311,13 @@
 <p>$ hexo g  //生成<br>$ hexo s  //启动本地预览服务，打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="external">localhost:4000</a> 即可看到内容，按Ctrl+C停止预览</p>
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/4.png" alt=""><br>执行以上命令之后，hexo就会在public文件夹生成相关html文件<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/5.png" alt=""><br>预览的网页效果如下<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/6.png" alt=""></p>
-<h2 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h2><p><a href="https://hexo.io/themes/" target="_blank" rel="external">hexo官网主题</a><br>个人比较喜欢hexo-theme-next，<a href="https://github.com/xinhua224/hexo-theme-next" target="_blank" rel="external">GitHub地址</a>，clone下来<br>首先下载这个主题，进入hexo\themes文件夹，右键git bash</p>
+<h1 id="修改主题"><a href="#修改主题" class="headerlink" title="修改主题"></a>修改主题</h1><p><a href="https://hexo.io/themes/" target="_blank" rel="external">hexo官网主题</a><br>个人比较喜欢hexo-theme-next，<a href="https://github.com/xinhua224/hexo-theme-next" target="_blank" rel="external">GitHub地址</a>，clone下来<br>首先下载这个主题，进入hexo\themes文件夹，右键git bash</p>
 <blockquote>
 <p>$ git clone <a href="https://github.com/xinhua224/hexo-theme-next.git" target="_blank" rel="external">https://github.com/xinhua224/hexo-theme-next.git</a></p>
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/7.png" alt=""> </p>
 <p>然后在_config.yml中，进行基础配置，并将主题修改为theme: hexo-theme-next<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/8.png" alt=""><br>重新执行hexo g来重新生成。<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/9.png" alt=""> </p>
-<h2 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h2><p>在Github上new repository，新建一个仓库<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/10.png" alt=""><br>clone仓库地址<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/11.png" alt=""></p>
+<h1 id="部署到Github上"><a href="#部署到Github上" class="headerlink" title="部署到Github上"></a>部署到Github上</h1><p>在Github上new repository，新建一个仓库<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/10.png" alt=""><br>clone仓库地址<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/11.png" alt=""></p>
 <p>在hexo文件夹下，_config.yml进行配置（注意仓库地址repository的写法，并不是简单复制），然后重新生成输入命令</p>
 <blockquote>
 <p>$ hexo g</p>
@@ -330,12 +331,12 @@
 <p>$ hexo d -g</p>
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/14.png" alt=""><br>在GitHub上刷新，public上的文件就发布上来了<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/15.png" alt=""><br>测试访问，在浏览器打开xinhua224.github.io<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/16.png" alt=""> </p>
-<h2 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h2><p>创建新文章，git bash输入</p>
+<h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h1><h2 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h2><p>在git bash输入</p>
 <blockquote>
 <p>$ hexo new 我的Github+hexo个人博客是怎样炼成的</p>
 </blockquote>
-<p><img src="/img/我的Github+hexo个人博客是怎样炼成的/17.png" alt=""><br>在本地E:\hexo\source_posts目录下就新生成了新博客页的md文件<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/18.png" alt=""><br>在sublime中打开该文件，用markdown语法书写即可。<br>写博客时，$ hexo s启动本地服务，在<a href="http://localhost:4000/，查看本地效果。" target="_blank" rel="external">http://localhost:4000/，查看本地效果。</a></p>
-<p>写完后发布更新到GitHub上<br>重新生成输入命令</p>
+<p><img src="/img/我的Github+hexo个人博客是怎样炼成的/17.png" alt=""><br>执行完毕，你会发现本地E:\hexo\source_posts目录下就生成了新添加页的md文件<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/18.png" alt=""><br>在sublime中打开新生成的md文件，用markdown语法书写即可。<br>写博客时，$ hexo s启动本地服务，localhost:4000，查看本地效果。</p>
+<h2 id="写完后发布更新到GitHub上"><a href="#写完后发布更新到GitHub上" class="headerlink" title="写完后发布更新到GitHub上"></a>写完后发布更新到GitHub上</h2><p>重新生成输入命令</p>
 <blockquote>
 <p>$ hexo g</p>
 </blockquote>
@@ -343,7 +344,7 @@
 <blockquote>
 <p>$ hexo d -g</p>
 </blockquote>
-<p><img src="/img/我的Github+hexo个人博客是怎样炼成的/19.png" alt=""> </p>
+<p><strong><em>注意：每次修改本地文件后，都要进行hexo g才能保存，再键入hexo d -g才能更新到GitHub上</em></strong><br><img src="/img/我的Github+hexo个人博客是怎样炼成的/19.png" alt=""> </p>
 
           
         
@@ -425,7 +426,7 @@
               <a href="/archives/">
             
                 <span class="site-state-item-count">1</span>
-                <span class="site-state-item-name">Artikel</span>
+                <span class="site-state-item-name">posts</span>
               </a>
             </div>
           
@@ -477,7 +478,7 @@
 </div>
 
 
-  <div class="powered-by">Erstellt mit  <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
 
 
 
