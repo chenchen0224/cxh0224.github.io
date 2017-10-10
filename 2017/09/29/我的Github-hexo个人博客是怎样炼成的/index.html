@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/18.png">
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/19.png">
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/setup.png">
-<meta property="og:updated_time" content="2017-10-10T14:33:52.006Z">
+<meta property="og:updated_time" content="2017-10-10T14:41:32.274Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的Github+hexo个人博客是怎样炼成的">
 <meta name="twitter:description" content="看着别人都有自己的博客，内心有一丢丢的羡慕。前几天恰好有时间，就查阅了一些资料，开始琢磨怎么搭建自己的blog。这一路走来，摸爬滚打，总算是搭建成功。然后自己再重新安装部署一遍，把完整步骤分享给大家。同时奉上一些传送门供参考。。。">
@@ -313,7 +313,7 @@
 <h1 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h1><p>在搭建博客开始之前，您必须做好以下准备工作</p>
 <ol>
 <li>安装了nodejs、npm，傻瓜式安装即可，此处不再赘述。</li>
-<li>安装了<a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a>，git bash可打开黑窗口</li>
+<li>安装了<a href="https://git-for-windows.github.io/" target="_blank" rel="external">git for windows</a>，git bash可打开黑窗口，并配置Git的user name和email：(第一次安装Git)</li>
 <li>在GitHub上注册一个账号，并配置SSH key</li>
 </ol>
 <p><strong>SSH key配置步骤：</strong></p>
@@ -371,11 +371,11 @@
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/17.png" alt=""><br>执行完毕，你会发现本地E:\hexo\source_posts目录下就生成了新添加页的md文件<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/18.png" alt=""><br>在sublime中打开新生成的md文件，用markdown语法书写即可。<a href="http://www.appinn.com/markdown/" target="_blank" rel="external">Markdown 语法说明 (简体中文版)</a> <a href="http://www.jianshu.com/p/1e402922ee32/" target="_blank" rel="external">Markdown——入门指南 - 简书</a><br>写博客时，$ hexo s启动本地服务，localhost:4000，查看本地效果。</p>
 <h2 id="写完后发布更新到GitHub上"><a href="#写完后发布更新到GitHub上" class="headerlink" title="写完后发布更新到GitHub上"></a>写完后发布更新到GitHub上</h2><p>重新生成输入命令</p>
 <blockquote>
-<p>$ hexo g</p>
+<p>$ hexo g //生成</p>
 </blockquote>
 <p>更新到Github，输入如下命令：</p>
 <blockquote>
-<p>$ hexo d </p>
+<p>$ hexo d //部署</p>
 </blockquote>
 <p><strong><em>注意：每次修改本地文件后，都要进行hexo g才能保存，再键入hexo d才能更新到GitHub上，有时需要先hexo c</em></strong><br><img src="/img/我的Github+hexo个人博客是怎样炼成的/19.png" alt=""> </p>
 <h1 id="重做系统后如何配置"><a href="#重做系统后如何配置" class="headerlink" title="重做系统后如何配置"></a>重做系统后如何配置</h1><ul>
@@ -383,7 +383,7 @@
 <li>$ npm install -g hexo //注意：不需要命令$ hexo init</li>
 <li>$ npm install hexo-deployer-git –save</li>
 </ul>
-<p><strong><em>此处遇到一个坑。</em></strong><br>如果hexo d -g出现git安装完没有配置的问题，会提示Please tell me who you are，按照下图进行配置即可。<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/setup.png" alt=""></p>
+<p><strong><em>此处遇到一个坑</em></strong><br>如果hexo d -g出现git安装完没有配置的问题，会提示Please tell me who you are，按照下图进行配置即可。<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/setup.png" alt=""></p>
 <h1 id="可以参考的传送门"><a href="#可以参考的传送门" class="headerlink" title="可以参考的传送门"></a>可以参考的传送门</h1><ul>
 <li><a href="http://www.jianshu.com/p/a2fe56d11c4f" target="_blank" rel="external">搭建Hexo博客中碰到的坑</a></li>
 <li><a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="external">搭建个人博客-hexo+github详细完整步骤</a></li>
