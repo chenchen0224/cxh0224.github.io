@@ -95,7 +95,7 @@
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/18.png">
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/19.png">
 <meta property="og:image" content="http://yoursite.com/img/我的Github+hexo个人博客是怎样炼成的/setup.png">
-<meta property="og:updated_time" content="2017-10-10T14:19:28.036Z">
+<meta property="og:updated_time" content="2017-10-10T14:33:52.006Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="我的Github+hexo个人博客是怎样炼成的">
 <meta name="twitter:description" content="看着别人都有自己的博客，内心有一丢丢的羡慕。前几天恰好有时间，就查阅了一些资料，开始琢磨怎么搭建自己的blog。这一路走来，摸爬滚打，总算是搭建成功。然后自己再重新安装部署一遍，把完整步骤分享给大家。同时奉上一些传送门供参考。。。">
@@ -361,7 +361,7 @@
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/13.png" alt=""><br>发布到Github，输入如下命令：</p>
 <blockquote>
-<p>$ hexo d -g</p>
+<p>$ hexo d</p>
 </blockquote>
 <p><img src="/img/我的Github+hexo个人博客是怎样炼成的/14.png" alt=""><br>在GitHub上刷新，public上的文件就发布上来了<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/15.png" alt=""><br>测试访问，在浏览器打开xinhua224.github.io<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/16.png" alt=""> </p>
 <h1 id="写博客"><a href="#写博客" class="headerlink" title="写博客"></a>写博客</h1><h2 id="创建新文章"><a href="#创建新文章" class="headerlink" title="创建新文章"></a>创建新文章</h2><p>在git bash输入</p>
@@ -375,15 +375,15 @@
 </blockquote>
 <p>更新到Github，输入如下命令：</p>
 <blockquote>
-<p>$ hexo d -g</p>
+<p>$ hexo d </p>
 </blockquote>
-<p><strong><em>注意：每次修改本地文件后，都要进行hexo g才能保存，再键入hexo d -g才能更新到GitHub上，有时需要先hexo c</em></strong><br><img src="/img/我的Github+hexo个人博客是怎样炼成的/19.png" alt=""> </p>
+<p><strong><em>注意：每次修改本地文件后，都要进行hexo g才能保存，再键入hexo d才能更新到GitHub上，有时需要先hexo c</em></strong><br><img src="/img/我的Github+hexo个人博客是怎样炼成的/19.png" alt=""> </p>
 <h1 id="重做系统后如何配置"><a href="#重做系统后如何配置" class="headerlink" title="重做系统后如何配置"></a>重做系统后如何配置</h1><ul>
 <li>重新配置SSH Key</li>
 <li>$ npm install -g hexo //注意：不需要命令$ hexo init</li>
 <li>$ npm install hexo-deployer-git –save</li>
 </ul>
-<p>如果hexo d -g出现git安装完没有配置的问题，会提示Please tell me who you are，按照下图进行配置即可。<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/setup.png" alt=""></p>
+<p><strong><em>此处遇到一个坑。</em></strong><br>如果hexo d -g出现git安装完没有配置的问题，会提示Please tell me who you are，按照下图进行配置即可。<br><img src="/img/我的Github+hexo个人博客是怎样炼成的/setup.png" alt=""></p>
 <h1 id="可以参考的传送门"><a href="#可以参考的传送门" class="headerlink" title="可以参考的传送门"></a>可以参考的传送门</h1><ul>
 <li><a href="http://www.jianshu.com/p/a2fe56d11c4f" target="_blank" rel="external">搭建Hexo博客中碰到的坑</a></li>
 <li><a href="http://www.jianshu.com/p/189fd945f38f" target="_blank" rel="external">搭建个人博客-hexo+github详细完整步骤</a></li>
