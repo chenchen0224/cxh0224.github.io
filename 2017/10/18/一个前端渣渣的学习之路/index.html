@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/fly.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="我大学读的是建筑与土木工程专业，毕业之后在公司大哥的建议下，接触了前端。自己在前端这个坑中已经摸爬滚打半年有余，从一开始懵懂到现在可以用Vue框架做一个中型的网站，对学习前端也开始有了一丢丢的自信心，写这篇文章的目的主要是将我的学习路线分享给零基础小白，希望可以少走些弯路。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一个前端渣渣的学习之路">
+<meta property="og:url" content="http://yoursite.com/2017/10/18/一个前端渣渣的学习之路/index.html">
+<meta property="og:site_name" content="风到这里就是粘">
+<meta property="og:description" content="我大学读的是建筑与土木工程专业，毕业之后在公司大哥的建议下，接触了前端。自己在前端这个坑中已经摸爬滚打半年有余，从一开始懵懂到现在可以用Vue框架做一个中型的网站，对学习前端也开始有了一丢丢的自信心，写这篇文章的目的主要是将我的学习路线分享给零基础小白，希望可以少走些弯路。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2017-10-18T15:17:28.871Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一个前端渣渣的学习之路">
+<meta name="twitter:description" content="我大学读的是建筑与土木工程专业，毕业之后在公司大哥的建议下，接触了前端。自己在前端这个坑中已经摸爬滚打半年有余，从一开始懵懂到现在可以用Vue框架做一个中型的网站，对学习前端也开始有了一丢丢的自信心，写这篇文章的目的主要是将我的学习路线分享给零基础小白，希望可以少走些弯路。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/10/18/一个前端渣渣的学习之路/"/>
+
+
+
+
+
+  <title>一个前端渣渣的学习之路 | 风到这里就是粘</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">风到这里就是粘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/18/一个前端渣渣的学习之路/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HuaZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风到这里就是粘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">一个前端渣渣的学习之路</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-18T22:31:49+08:00">
+                2017-10-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我大学读的是建筑与土木工程专业，毕业之后在公司大哥的建议下，接触了前端。自己在前端这个坑中已经摸爬滚打半年有余，从一开始懵懂到现在可以用Vue框架做一个中型的网站，对学习前端也开始有了一丢丢的自信心，写这篇文章的目的主要是将我的学习路线分享给零基础小白，希望可以少走些弯路。<br><a id="more"></a></p>
+<h1 id="看过的那些书"><a href="#看过的那些书" class="headerlink" title="看过的那些书"></a>看过的那些书</h1><h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>用一个前端小学霸的一句话，看书打基础最重要，管它世界的纷纷扰扰。</p>
+<h2 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h2><p>走过了基础的阶段，你会发现要学的越来越多，其实基础只是入坑的开始。</p>
+<h1 id="工具推荐"><a href="#工具推荐" class="headerlink" title="工具推荐"></a>工具推荐</h1><p>在选择使用哪个工具时，特意在网上查阅了一下资料，发现sublime和webstrom使用者居多。就两个都安装了一下，亲身体验选择。webstorm 集成的IDE非常强大，比较占内存。而sublime是一个非常性感的编辑器，最吸引我的地方就是打开速度非常快，各种插件，各种快捷键，自从喜欢用sublime以后，妈妈再也不用担心我的学习了。。</p>
+<h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>附上亲测可用的注册码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">—– BEGIN LICENSE —–</div><div class="line">TwitterInc</div><div class="line">200 User License</div><div class="line">EA7E-890007</div><div class="line">1D77F72E 390CDD93 4DCBA022 FAF60790</div><div class="line">61AA12C0 A37081C5 D0316412 4584D136</div><div class="line">94D7F7D4 95BC8C1C 527DA828 560BB037</div><div class="line">D1EDDD8C AE7B379F 50C9D69D B35179EF</div><div class="line">2FE898C4 8E4277A8 555CE714 E1FB0E43</div><div class="line">D5D52613 C3D12E98 BC49967F 7652EED2</div><div class="line">9D2D2E61 67610860 6D338B72 5CF95C69</div><div class="line">E36B85CC 84991F19 7575D828 470A92AB</div><div class="line">—— END LICENSE ——</div></pre></td></tr></table></figure></p>
+<h2 id="常用插件安装与使用"><a href="#常用插件安装与使用" class="headerlink" title="常用插件安装与使用"></a>常用插件安装与使用</h2><h3 id="Package-Control"><a href="#Package-Control" class="headerlink" title="Package Control"></a>Package Control</h3><p><strong><em>安装</em></strong><br>方法一：代码安装<br>View-&gt;Show Console菜单打开命令行，粘贴如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os,hashlib; h = &apos;df21e130d211cfc94d9b0905775a7c0f&apos; + &apos;1e3d39e33b79698005270310898eea76&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)</div></pre></td></tr></table></figure></p>
+<p>把上述代码复制到：View&gt;Show Console，回车，可能会出现Error<br>方法二：手动安装</p>
+<ul>
+<li>点击Preferences &gt; Browse Packages菜单</li>
+<li>进入打开的目录的上层目录，然后再进入Installed Packages/目录</li>
+<li>下载<a href="https://sublime.wbond.net/Package%20Control.sublime-package" target="_blank" rel="external">Package Control.sublime-package</a>并复制到Installed Packages/目录</li>
+<li>重启Sublime Text</li>
+</ul>
+<p><strong><em>使用</em></strong><br>按下 Ctrl+Shift+P 调出命令面板，输入pci， 调出 Install Package 选项并回车，然后在列表中选中要安装的插件。</p>
+<h3 id="Emmet插件"><a href="#Emmet插件" class="headerlink" title="Emmet插件"></a>Emmet插件</h3><p><strong><em>安装</em></strong><br>安装Emmet时出现：please wait a bit while pyV8 binary错误<br>解决方法：<br>下载PyV8，<br>解压修改文件名为PyV8,放到Installed Packages文件夹下，删掉原来的，重启一下就好了</p>
+<p><strong><em>使用</em></strong><br>举两个例子</p>
+<ul>
+<li>!+Tab：快速新建html结构</li>
+<li>ul&gt;.item$*10按ctrl+E：&gt;号生成子元素，$产生序号上<br><a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="external">速查表</a><h3 id="HTML-CSS-JS-Prettify"><a href="#HTML-CSS-JS-Prettify" class="headerlink" title="HTML/CSS/JS Prettify"></a>HTML/CSS/JS Prettify</h3>ctrl+shift+h<h3 id="JsFormat"><a href="#JsFormat" class="headerlink" title="JsFormat"></a>JsFormat</h3>ctrl+alt+F对JS进行格式化，修改为ctrl+shift+J，代码是<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">    &#123;</div><div class="line">        &quot;keys&quot;: [&quot;ctrl+shift+j&quot;], &quot;command&quot;: &quot;js_format&quot;,</div><div class="line">        &quot;context&quot;: [&#123;&quot;key&quot;: &quot;selector&quot;, &quot;operator&quot;: &quot;equal&quot;, &quot;operand&quot;: &quot;source.js,source.json&quot;&#125;]</div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="Vueformatter"><a href="#Vueformatter" class="headerlink" title="Vueformatter"></a>Vueformatter</h3><p>不用安装这个插件，只要安装了HTML/CSS/JS Prettify，在&gt;HTML/CSS/JS Prettify-&gt;Plugin options Default 中<br>在”html”的”allowed_file_extensions”: [“htm”, “html”, “xhtml”, “shtml”, “xml”, “svg”,”vue”] 加上vue就好了</p>
+<h3 id="advancednewfile"><a href="#advancednewfile" class="headerlink" title="advancednewfile"></a>advancednewfile</h3><p>ctrl+alt+N输入目录和文件全名，如：js/test.js</p>
+<h3 id="BracketHighlighter"><a href="#BracketHighlighter" class="headerlink" title="BracketHighlighter"></a>BracketHighlighter</h3><p>大括号、对号的配对提示，再也不用在括号中迷茫了</p>
+<h3 id="sidebarenhancement"><a href="#sidebarenhancement" class="headerlink" title="sidebarenhancement"></a>sidebarenhancement</h3><p>增强侧边栏</p>
+<h3 id="colorpicker"><a href="#colorpicker" class="headerlink" title="colorpicker"></a>colorpicker</h3><p>按Ctrl+Shift+C可调出取色面板</p>
+<h3 id="View-In-Browser"><a href="#View-In-Browser" class="headerlink" title="View In Browser"></a>View In Browser</h3><p>安装完成后，使用默认的快捷键：<br>Firefox浏览器： Ctrl + Alt + f<br>Chrome浏览器： Ctrl + Alt + c<br>IE浏览器： Ctrl + Alt + i<br>Safari浏览器： Ctrl + Alt + s<br>也可以自定义快捷键，preferences&gt;按键绑定-用户，输入以下代码设置快捷键<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">[   </div><div class="line">        //谷歌 F1</div><div class="line">    &#123;</div><div class="line">        &quot;keys&quot;: [&quot;f1&quot;],</div><div class="line">        &quot;command&quot;: &quot;side_bar_files_open_with&quot;,</div><div class="line">        &quot;args&quot;: &#123;</div><div class="line">            &quot;paths&quot;: [],</div><div class="line">            &quot;application&quot;: &quot;C:\\Program Files (x86)\\Google\\Chrome\\Application\\chrome.exe&quot;,</div><div class="line">            &quot;extensions&quot;: &quot;.*&quot; //any file with extension</div><div class="line">        &#125;</div><div class="line">    &#125;,</div><div class="line">    //火狐浏览器 F2</div><div class="line">     &#123;</div><div class="line">        &quot;keys&quot;: [&quot;f2&quot;],</div><div class="line">        &quot;command&quot;: &quot;side_bar_files_open_with&quot;,</div><div class="line">        &quot;args&quot;: &#123;</div><div class="line">            &quot;paths&quot;: [],</div><div class="line">            &quot;application&quot;: &quot;D:\\Program Files (x86)\\Mozilla Firefox\\firefox.exe&quot;,</div><div class="line">            &quot;extensions&quot;: &quot;.*&quot; //any file with extension</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
+<h3 id="docblockr"><a href="#docblockr" class="headerlink" title="docblockr"></a>docblockr</h3><p>输入/<em>按回车，补充行注释。<br>输入/<em>*按回车，补充多行注释。<br>在写好的函数上方输入/</em></em>按tab键，自动补充函数说明格式。类似于VS的///<br>利用DocBlocker可以进行多行注释<br>docblock,块注释;<br>Ctrl+/: 行注释;<br>Ctrl+Shift+/: 块注释.</p>
+<h3 id="FindKeyConflicts"><a href="#FindKeyConflicts" class="headerlink" title="FindKeyConflicts"></a>FindKeyConflicts</h3><p>查询所有快捷键：FindKeyConflicts: All Key Maps to Quick Panel<br>查询所有冲突按键：FindKeyConflicts: (Direct) Conflicts to Quick Panel</p>
+<h2 id="插件卸载"><a href="#插件卸载" class="headerlink" title="插件卸载"></a>插件卸载</h2><p>按下 Ctrl+Shift+P 调出命令面板，输入remove，进入Remove Package选项并回车，选择要删除的插件即可</p>
+<h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>前端的学习是无止境的，本节只是对现有学习的路线的总结。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/09/29/我的Github-hexo个人博客是怎样炼成的/" rel="next" title="我的Github+Hexo个人博客是怎样炼成的">
+                <i class="fa fa-chevron-left"></i> 我的Github+Hexo个人博客是怎样炼成的
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <p class="site-author-name" itemprop="name">HuaZ</p>
+            <p class="site-description motion-element" itemprop="description">淡然心性，浅笑相安。</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#看过的那些书"><span class="nav-number">1.</span> <span class="nav-text">看过的那些书</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">1.1.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#进阶"><span class="nav-number">1.2.</span> <span class="nav-text">进阶</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#工具推荐"><span class="nav-number">2.</span> <span class="nav-text">工具推荐</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#注册"><span class="nav-number">2.1.</span> <span class="nav-text">注册</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用插件安装与使用"><span class="nav-number">2.2.</span> <span class="nav-text">常用插件安装与使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Package-Control"><span class="nav-number">2.2.1.</span> <span class="nav-text">Package Control</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Emmet插件"><span class="nav-number">2.2.2.</span> <span class="nav-text">Emmet插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTML-CSS-JS-Prettify"><span class="nav-number">2.2.3.</span> <span class="nav-text">HTML/CSS/JS Prettify</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JsFormat"><span class="nav-number">2.2.4.</span> <span class="nav-text">JsFormat</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Vueformatter"><span class="nav-number">2.2.5.</span> <span class="nav-text">Vueformatter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#advancednewfile"><span class="nav-number">2.2.6.</span> <span class="nav-text">advancednewfile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#BracketHighlighter"><span class="nav-number">2.2.7.</span> <span class="nav-text">BracketHighlighter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sidebarenhancement"><span class="nav-number">2.2.8.</span> <span class="nav-text">sidebarenhancement</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#colorpicker"><span class="nav-number">2.2.9.</span> <span class="nav-text">colorpicker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#View-In-Browser"><span class="nav-number">2.2.10.</span> <span class="nav-text">View In Browser</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docblockr"><span class="nav-number">2.2.11.</span> <span class="nav-text">docblockr</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#FindKeyConflicts"><span class="nav-number">2.2.12.</span> <span class="nav-text">FindKeyConflicts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#插件卸载"><span class="nav-number">2.3.</span> <span class="nav-text">插件卸载</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#未完待续"><span class="nav-number">3.</span> <span class="nav-text">未完待续</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HuaZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Muse</a> v5.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
