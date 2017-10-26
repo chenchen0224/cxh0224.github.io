@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion" lang="zh-Hans">
+<html class="theme-next gemini use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="vue,房产网签网备系统,elementUI,less," />
+  <meta name="keywords" content="vue,房产网签网备系统," />
 
 
 
@@ -70,17 +70,19 @@
 
 
 <meta name="description" content="从八月中下旬到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥，能称哥的都是厉害的）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人，叁哥就是我成长道路上的一个。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex +">
-<meta name="keywords" content="vue,房产网签网备系统,elementUI,less">
+<meta name="keywords" content="vue,房产网签网备系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="房产网签网备系统-总结Part1（Vue2.x）">
 <meta property="og:url" content="http://yoursite.com/2017/09/16/房产网签网备系统-总结Part1（Vue2-x）/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
 <meta property="og:description" content="从八月中下旬到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥，能称哥的都是厉害的）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人，叁哥就是我成长道路上的一个。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex +">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-25T14:58:44.572Z">
+<meta property="og:image" content="http://yoursite.com/img/房产网签网备系统/folders.jpg">
+<meta property="og:updated_time" content="2017-10-26T15:45:52.750Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="房产网签网备系统-总结Part1（Vue2.x）">
 <meta name="twitter:description" content="从八月中下旬到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥，能称哥的都是厉害的）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人，叁哥就是我成长道路上的一个。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex +">
+<meta name="twitter:image" content="http://yoursite.com/img/房产网签网备系统/folders.jpg">
 
 
 
@@ -88,9 +90,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Mist',
+    scheme: 'Gemini',
     version: '5.1.2',
-    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
@@ -135,7 +137,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -197,16 +199,6 @@
               <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
             
             标签
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-search">
-          <a href="/search/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-search"></i> <br />
-            
-            搜索
           </a>
         </li>
       
@@ -332,7 +324,7 @@
       
 
       
-        <p>从八月中下旬到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥，能称哥的都是厉害的）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人，叁哥就是我成长道路上的一个。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue resource + elementUI + Less），采用C#调用WebService提供数据服务（内网服务）（感谢来自后端哥哥的大力支持~^o^~）。<br>全部项目请戳-&gt;&gt;&gt;&gt;&gt;<br>这一系列总结主要想整理的是，在项目过程中使用的新方法、思路、以及遇到的坑，包括Vue、HTML5、CSS、ES6四个部分。本篇是房产网签网备系统Part1-Vue2.x，主要来写Vue的使用心得和遇到的问题。<br><a id="more"></a><br>Vue全部参考文档请戳-&gt;&gt;&gt;&gt;&gt;</p>
+        <p>从八月中下旬到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥，能称哥的都是厉害的）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人，叁哥就是我成长道路上的一个。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue resource + elementUI + Less），采用C#调用WebService提供数据服务（内网服务）（感谢来自后端哥哥的大力支持~^o^~）。<br>全部项目请戳-&gt;&gt;&gt;&gt;&gt;<br>这一系列总结主要想整理的是，在项目过程中用到的新方法、思路、以及遇到的坑，包括Vue、HTML5、CSS、ES6四个部分。本篇是房产网签网备系统Part1-Vue2.x，主要来写Vue的使用以及遇到的一些问题。<br><a id="more"></a><br>Vue全家桶全部参考文档请戳-&gt;&gt;&gt;&gt;&gt;</p>
 <ul>
 <li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="external">vue.js</a></li>
 <li><a href="https://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router</a></li>
@@ -340,9 +332,48 @@
 <li><a href="http://www.jianshu.com/p/3ce2bd36596e" target="_blank" rel="external">一起玩转Vue-resource</a></li>
 <li><a href="http://www.jianshu.com/p/4643a8e43b79" target="_blank" rel="external">npm使用入门</a></li>
 <li><a href="http://element.eleme.io/#/zh-CN" target="_blank" rel="external">Element - 网站快速成型工具</a></li>
-<li><a href="http://www.bootcss.com/p/lesscss/" target="_blank" rel="external">LESS « 一种动态样式语言</a><br>下面就从Vue的环境配置到具体的使用心得来详细地进行总结，以加深印象。<h1 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h1><h1 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><h2 id="组件结构"><a href="#组件结构" class="headerlink" title="组件结构"></a>组件结构</h2><h1 id="打包项目"><a href="#打包项目" class="headerlink" title="打包项目"></a>打包项目</h1><h1 id="用到的一些特性"><a href="#用到的一些特性" class="headerlink" title="用到的一些特性"></a>用到的一些特性</h1></li>
+<li><a href="http://www.bootcss.com/p/lesscss/" target="_blank" rel="external">LESS « 一种动态样式语言</a><br>下面就从Vue的环境配置到具体的使用心得来详细地进行总结，以加深印象。</li>
 </ul>
-<p>通过这个项目，我深深的体验到了Vue的强大，它抛弃了传统的直接操作dom的习惯，而是采用data数据驱动view的理念，使新手如我都可以快速上手。最后，必须来赞扬一下伟大的Vue————“简单而不失优雅，小巧而不乏大匠”。</p>
+<h1 id="Vue的使用"><a href="#Vue的使用" class="headerlink" title="Vue的使用"></a>Vue的使用</h1><p>使用Vue有两种方法：</p>
+<ul>
+<li><p>直接&lt;/script&gt;引入CDN</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
+</li>
+<li><p>通过脚手架vue-cli创建vue项目（需要使用npm来安装）<br>CLI是Vue官方提供的一个命令行工具，需要对node.js有一定的了解，不推荐新手直接使用。</p>
+</li>
+</ul>
+<p>本项目采用第二种方法。</p>
+<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="安装node-js"><a href="#安装node-js" class="headerlink" title="安装node.js"></a>安装node.js</h3><p>进入【<a href="https://nodejs.org/en/download/" target="_blank" rel="external">node.js官网</a>】，下载对应版本，一路傻瓜式安装即可。<br>安装完成后，cmd打开命令行输入 node -v 和 npm -v，如果能显示出版本号，就说明安装成功。</p>
+<blockquote>
+<p>小贴士：如果卸载重新安装，傻瓜式卸载后还需删除C:\Users\CXH\AppData\Roaming目录下的npm和npm-cache两个文件夹。（因为这个被折腾好久哦）</p>
+</blockquote>
+<h3 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g vue-cli</div></pre></td></tr></table></figure>
+<p>安装完成后，可以在命令行窗口中输入vue -v，如果能显示出版本号，就说明安装成功。如果安装失败，先清理缓存再重新安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm cache clean</div></pre></td></tr></table></figure></p>
+<h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>通过命令行窗口cd进入即将要新建项目的目录，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue init webpack my-project   //创建一个基于webpack模板的新项目</div></pre></td></tr></table></figure></p>
+<p>执行后，按照提示手动输入项目名称、描述、作者、打包方式、是否安装vue-router、是否使用ESLint检查代码、是否建立单元测试等内容后，会在当前目录生成一个以输入的项目名称为文件名的项目文件夹。<br>接下来，cd进入刚才新建的项目文件夹，安装依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure></p>
+<p>安装完成后，启动项目</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev</div></pre></td></tr></table></figure>
+<p>这时会自动启动chrome，并跳转到localhost:8080页面，因为CLI带有热重载，Ctrl+S后会自动更新到浏览器哦。</p>
+<blockquote>
+<p>小贴士：启动已有项目只要npm install（仅在第一次启动时需要install），然后npm run dev就OK。</p>
+</blockquote>
+<h3 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h3><p>项目的目录结构如图所示。我们需要关注的是config目录、src目录、static目录和index.html。<br><img src="/img/房产网签网备系统/folders.jpg" alt=""></p>
+<ul>
+<li>config<br>&nbsp;- index.js 项目配置文件，包括端口号等的配置</li>
+<li>src文件夹是项目源码目录，其中初始包括三个文件夹和两个文件<br>&nbsp;- assets文件夹 一般存放图片等资源，会被webpack构建<br>&nbsp;- components文件夹 存放以.vue为后缀的组件<br>&nbsp;- router文件夹 其中的index.js用于配置路由<br>&nbsp;- App.vue 默认根组件，可以理解为其他所有组件的父组件<br>&nbsp;- main.js 入口js文件，主要作用是初始化vue实例并使用需要的插件<br>&nbsp;- static文件夹是纯静态资源文件夹，其中的文件不会被webpack构建</li>
+<li>index.html是入口页面</li>
+</ul>
+<p>其中，package.json是项目配置文件，dependencies是项目发布时的依赖，devDependencies是项目开发时的依赖</p>
+<h3 id="组件结构"><a href="#组件结构" class="headerlink" title="组件结构"></a>组件结构</h3><p>一个标准的vue组件，包含三个部分，一个是template，一个是script，一个是css。</p>
+<h2 id="打包项目"><a href="#打包项目" class="headerlink" title="打包项目"></a>打包项目</h2><p>项目开发完成后，进入项目目录输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run build</div></pre></td></tr></table></figure></p>
+<p>将项目打包，打包成功后会生成dist文件夹，这个文件夹里的文件就是最终的成果，它部署到服务器上就OK辣。</p>
+<blockquote>
+<p>小贴士：如果你安装了Git，右键git bash打开黑窗口，输入上边对应的命令就OK辣，不用再cmd啦。</p>
+</blockquote>
+<h1 id="用到的一些特性"><a href="#用到的一些特性" class="headerlink" title="用到的一些特性"></a>用到的一些特性</h1><p>通过这个项目，我深深的体验到了Vue的强大，它抛弃了传统的直接操作dom的习惯，而是采用data数据驱动view的理念，使新手如我都可以快速上手。最后，必须来赞扬一下伟大的Vu</p>
+<ul>
+<li>—“简单而不失优雅，小巧而不乏大匠”。</li>
+</ul>
 
       
     </div>
@@ -363,10 +394,6 @@
             <a href="/tags/vue/" rel="tag"># vue</a>
           
             <a href="/tags/房产网签网备系统/" rel="tag"># 房产网签网备系统</a>
-          
-            <a href="/tags/elementUI/" rel="tag"># elementUI</a>
-          
-            <a href="/tags/less/" rel="tag"># less</a>
           
         </div>
       
@@ -489,7 +516,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -532,7 +559,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境配置"><span class="nav-number">1.</span> <span class="nav-text">环境配置</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#新建项目"><span class="nav-number">2.</span> <span class="nav-text">新建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件结构"><span class="nav-number">2.2.</span> <span class="nav-text">组件结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包项目"><span class="nav-number">3.</span> <span class="nav-text">打包项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用到的一些特性"><span class="nav-number">4.</span> <span class="nav-text">用到的一些特性</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Vue的使用"><span class="nav-number">1.</span> <span class="nav-text">Vue的使用</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境配置"><span class="nav-number">1.1.</span> <span class="nav-text">环境配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装node-js"><span class="nav-number">1.1.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装vue-cli"><span class="nav-number">1.1.2.</span> <span class="nav-text">安装vue-cli</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建项目"><span class="nav-number">1.2.</span> <span class="nav-text">新建项目</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#项目结构"><span class="nav-number">1.2.1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件结构"><span class="nav-number">1.2.2.</span> <span class="nav-text">组件结构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#打包项目"><span class="nav-number">1.3.</span> <span class="nav-text">打包项目</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#用到的一些特性"><span class="nav-number">2.</span> <span class="nav-text">用到的一些特性</span></a></li></ol></div>
             
 
           </div>
@@ -570,7 +597,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
 
 
 
@@ -655,6 +682,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
