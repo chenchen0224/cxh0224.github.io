@@ -85,7 +85,7 @@
 <meta property="og:image" content="http://yoursite.com/img/一个前端渣渣的学习之路/css.jpg">
 <meta property="og:image" content="http://yoursite.com/img/一个前端渣渣的学习之路/高性能.jpg">
 <meta property="og:image" content="http://yoursite.com/img/一个前端渣渣的学习之路/HTTP.jpg">
-<meta property="og:updated_time" content="2017-10-25T15:00:49.628Z">
+<meta property="og:updated_time" content="2017-10-27T13:08:57.600Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个前端渣渣的学习之路">
 <meta name="twitter:description" content="从五六月份开始到现在，在前端这个坑中已经摸爬滚打半年有余，从一开始懵懂到现在可以用Vue框架做一个中型的网站，对学习前端也开始有了一丢丢的自信心。写这篇博文的目的主要是将一些大师写的书、博客、官方文档以及工具使用分享出来，希望能给初学者提供入门参考，可以让他们少踩一些坑。">
@@ -354,7 +354,7 @@
 <li><a href="http://element.eleme.io/#/zh-CN" target="_blank" rel="external">Element - 网站快速成型工具</a></li>
 <li><a href="http://www.bootcss.com/p/lesscss/" target="_blank" rel="external">LESS « 一种动态样式语言</a></li>
 </ul>
-<h1 id="关于工具sublime"><a href="#关于工具sublime" class="headerlink" title="关于工具sublime"></a>关于工具sublime</h1><p>在选择使用哪个工具时，特意在网上查阅了一下资料，发现sublime和webstrom使用者居多。就两个都安装了一下，亲身体验选择。webstorm 集成的IDE非常强大，比较占内存。而sublime是一个非常性感的编辑器，最吸引我的地方就是打开速度非常快，各种插件，各种快捷键，自从喜欢用sublime以后，妈妈再也不用担心我的学习了。。</p>
+<h1 id="关于工具sublime"><a href="#关于工具sublime" class="headerlink" title="关于工具sublime"></a>关于工具sublime</h1><p>在选择使用哪个工具时，特意在网上查阅了一下资料，发现sublime和webstrom使用者居多。就两个都安装了一下，亲身体验选择。webstorm 集成的IDE非常强大，比较占内存。而sublime是一个非常“性感”的编辑器，最吸引我的地方就是打开速度非常快，各种插件，各种快捷键，自从喜欢用sublime以后，妈妈再也不用担心我的学习了。。。</p>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>我使用的版本是Sublime Text Build 3143 x64，官网下载傻瓜式安装即可。</p>
 <h2 id="注册"><a href="#注册" class="headerlink" title="注册"></a>注册</h2><p>附上亲测可用的注册码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">—– BEGIN LICENSE —–</div><div class="line">TwitterInc</div><div class="line">200 User License</div><div class="line">EA7E-890007</div><div class="line">1D77F72E 390CDD93 4DCBA022 FAF60790</div><div class="line">61AA12C0 A37081C5 D0316412 4584D136</div><div class="line">94D7F7D4 95BC8C1C 527DA828 560BB037</div><div class="line">D1EDDD8C AE7B379F 50C9D69D B35179EF</div><div class="line">2FE898C4 8E4277A8 555CE714 E1FB0E43</div><div class="line">D5D52613 C3D12E98 BC49967F 7652EED2</div><div class="line">9D2D2E61 67610860 6D338B72 5CF95C69</div><div class="line">E36B85CC 84991F19 7575D828 470A92AB</div><div class="line">—— END LICENSE ——</div></pre></td></tr></table></figure></p>
 <h2 id="常用插件安装与使用"><a href="#常用插件安装与使用" class="headerlink" title="常用插件安装与使用"></a>常用插件安装与使用</h2><p><strong>Package Control</strong><br>安装：<br>方法一：代码安装<br>View-&gt;Show Console菜单打开命令行，粘贴如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">import urllib.request,os,hashlib; h = &apos;df21e130d211cfc94d9b0905775a7c0f&apos; + &apos;1e3d39e33b79698005270310898eea76&apos;; pf = &apos;Package Control.sublime-package&apos;; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( &apos;http://packagecontrol.io/&apos; + pf.replace(&apos; &apos;, &apos;%20&apos;)).read(); dh = hashlib.sha256(by).hexdigest(); print(&apos;Error validating download (got %s instead of %s), please try manual install&apos; % (dh, h)) if dh != h else open(os.path.join( ipp, pf), &apos;wb&apos; ).write(by)</div></pre></td></tr></table></figure></p>
@@ -364,8 +364,9 @@
 <p>使用：<br>举两个例子</p>
 <ul>
 <li>!+Tab：快速新建html结构</li>
-<li>ul&gt;.item$*10按ctrl+E：&gt;号生成子元素，$产生序号上<br>【<a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="external">速查表</a>】</li>
+<li>ul&gt;.item$*10按ctrl+E：&gt;号生成子元素，$产生序号上</li>
 </ul>
+<p>Emmet插件的更多使用栗子请戳【<a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="external">速查表</a>】</p>
 <p><strong>HTML/CSS/JS Prettify</strong><br>ctrl+shift+h</p>
 <p><strong>JsFormat</strong><br>ctrl+alt+F对JS进行格式化，修改为ctrl+shift+J，代码是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[</div><div class="line">  &#123;</div><div class="line">    &quot;keys&quot;: [&quot;ctrl+shift+j&quot;], &quot;command&quot;: &quot;js_format&quot;,</div><div class="line">    &quot;context&quot;: [&#123;&quot;key&quot;: &quot;selector&quot;, &quot;operator&quot;: &quot;equal&quot;, &quot;operand&quot;: &quot;source.js,source.json&quot;&#125;]</div><div class="line">  &#125;</div><div class="line">]</div></pre></td></tr></table></figure></p>
 <p><strong>Vueformatter</strong><br>不用安装这个插件，只要安装了HTML/CSS/JS Prettify，在&gt;HTML/CSS/JS Prettify-&gt;Plugin options Default中<br>修改html的allowed_file_extensions: [“htm”, “html”, “xhtml”, “shtml”, “xml”, “svg”,”vue”] 加上vue就好了</p>
@@ -374,7 +375,7 @@
 <p><strong>sidebarenhancement</strong><br>增强侧边栏</p>
 <p><strong>colorpicker</strong><br>按Ctrl+Shift+C可调出取色面板</p>
 <p><strong>View In Browser</strong><br>安装完成后，使用默认的快捷键：<br>Firefox浏览器： Ctrl + Alt + f<br>Chrome浏览器： Ctrl + Alt + c<br>IE浏览器： Ctrl + Alt + i<br>Safari浏览器： Ctrl + Alt + s<br>也可以自定义快捷键。</p>
-<p><strong>docblockr</strong><br>输入/<em>按回车，补充行注释。<br>输入/<em>*按回车，补充多行注释。<br>在写好的函数上方输入/</em></em>按tab键，自动补充函数说明格式。类似于VS的///<br>利用DocBlocker可以进行多行注释<br>docblock,块注释;<br>Ctrl+/: 行注释;<br>Ctrl+Shift+/: 块注释。<br>也可以自定义注释：自定义配置：<br>  Preference -&gt; Package Settings -&gt; DocBlockr -&gt; Settings - User<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;jsdocs_extra_tags&quot;: [</div><div class="line">        &quot;@Author 陈新华&quot;,</div><div class="line">        &quot;@DateTime &#123;&#123;datetime&#125;&#125;&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>docblockr</strong><br>Ctrl+/: 行注释;<br>Ctrl+Shift+/: 块注释。<br>在写好的函数上方输入/**按tab键，自动补充函数说明格式。类似于VS的///，也可以自定义注释：<br>  Preference -&gt; Package Settings -&gt; DocBlockr -&gt; Settings - User<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;jsdocs_extra_tags&quot;: [</div><div class="line">        &quot;@Author 陈新华&quot;,</div><div class="line">        &quot;@DateTime &#123;&#123;datetime&#125;&#125;&quot;</div><div class="line">    ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p><strong>FindKeyConflicts</strong><br>查询所有快捷键：FindKeyConflicts: All Key Maps to Quick Panel<br>查询所有冲突按键：FindKeyConflicts: (Direct) Conflicts to Quick Panel</p>
 <p><strong>插件卸载</strong><br>按下 Ctrl+Shift+P 调出命令面板，输入remove，进入Remove Package选项并回车，选择要删除的插件即可</p>
 <h1 id="未完待续"><a href="#未完待续" class="headerlink" title="未完待续"></a>未完待续</h1><p>前端的学习是一去不复返的，由于能力有限，本节只是对现有学习的路线的总结，不能面面俱到，随着以后不断的学习，这篇博文会持续更新的。</p>
@@ -424,8 +425,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/16/房产网签网备系统-总结Part1（Vue2-x）/" rel="prev" title="房产网签网备系统-总结Part1（Vue2.x）">
-                房产网签网备系统-总结Part1（Vue2.x） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/16/房产网签网备系统-总结Part1（Vue2-x）/" rel="prev" title="房产网签网备系统-总结Part1（Vue.js）">
+                房产网签网备系统-总结Part1（Vue.js） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -506,7 +507,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -528,7 +529,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
