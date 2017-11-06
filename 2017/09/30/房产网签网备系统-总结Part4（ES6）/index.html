@@ -77,7 +77,7 @@
 <meta property="og:site_name" content="风到这里就是粘">
 <meta property="og:description" content="本篇是房产网签网备系统-总结的第四部分：ES6，主要将项目中所用到的ES6新特性撸一遍，包括let、const、模板字符串、扩展运算符与rest、箭头函数、解构赋值、set集合与map集合、for…of循环、数组的Array.from()方法、模块等以加深印象。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-06T13:37:43.825Z">
+<meta property="og:updated_time" content="2017-11-06T14:29:55.664Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="房产网签网备系统-总结Part4（ES6）">
 <meta name="twitter:description" content="本篇是房产网签网备系统-总结的第四部分：ES6，主要将项目中所用到的ES6新特性撸一遍，包括let、const、模板字符串、扩展运算符与rest、箭头函数、解构赋值、set集合与map集合、for…of循环、数组的Array.from()方法、模块等以加深印象。">
@@ -364,7 +364,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let str = `h\`ello&apos;&quot;\nw orld\\`;</div><div class="line">console.log(str);</div><div class="line">//h`ello&apos;&quot;</div><div class="line">//w orld\</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="数组的Array-from-方法和includes-方法"><a href="#数组的Array-from-方法和includes-方法" class="headerlink" title="数组的Array.from()方法和includes()方法"></a>数组的Array.from()方法和includes()方法</h1><h2 id="Array-from-方法"><a href="#Array-from-方法" class="headerlink" title="Array.from()方法"></a>Array.from()方法</h2><p><strong>3个参数</strong></p>
+<h1 id="数组Array-from-、includes"><a href="#数组Array-from-、includes" class="headerlink" title="数组Array.from()、includes()"></a>数组Array.from()、includes()</h1><h2 id="Array-from-方法"><a href="#Array-from-方法" class="headerlink" title="Array.from()方法"></a>Array.from()方法</h2><p><strong>3个参数</strong></p>
 <ul>
 <li>类数组对象和可遍历（iterable）对象作为第一个参数</li>
 <li>映射函数作为第二个参数，可以使用箭头函数</li>
@@ -399,7 +399,7 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// ES5</div><div class="line">new (Date.bind.apply(Date, [null, 2015, 1, 1]))</div><div class="line">// ES6</div><div class="line">new Date(...[2015, 1, 1]);</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><h1 id="set和map集合"><a href="#set和map集合" class="headerlink" title="set和map集合"></a>set和map集合</h1><h1 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h1><h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1>
+<h1 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h1><h1 id="set、map集合"><a href="#set、map集合" class="headerlink" title="set、map集合"></a>set、map集合</h1><h1 id="for…of循环"><a href="#for…of循环" class="headerlink" title="for…of循环"></a>for…of循环</h1><h1 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h1>
       
     </div>
     
@@ -555,7 +555,7 @@
           
             
               <span class="links-of-author-item">
-                <a href="https://github.com/xinhua224" target="_blank" title="GitHub">
+                <a href="https://github.com/huaz224" target="_blank" title="GitHub">
                   
                     <i class="fa fa-fw fa-github"></i>GitHub</a>
               </span>
@@ -584,7 +584,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#块级声明let、const"><span class="nav-number">1.</span> <span class="nav-text">块级声明let、const</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#let"><span class="nav-number">1.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const"><span class="nav-number">1.2.</span> <span class="nav-text">const</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解构赋值"><span class="nav-number">2.</span> <span class="nav-text">解构赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板字符串"><span class="nav-number">3.</span> <span class="nav-text">模板字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组的Array-from-方法和includes-方法"><span class="nav-number">4.</span> <span class="nav-text">数组的Array.from()方法和includes()方法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-from-方法"><span class="nav-number">4.1.</span> <span class="nav-text">Array.from()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#includes-方法"><span class="nav-number">4.2.</span> <span class="nav-text">includes()方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展运算符与rest"><span class="nav-number">5.</span> <span class="nav-text">扩展运算符与rest</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展运算符"><span class="nav-number">5.1.</span> <span class="nav-text">扩展运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rest运算符"><span class="nav-number">5.2.</span> <span class="nav-text">rest运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展运算符的应用："><span class="nav-number">5.3.</span> <span class="nav-text">扩展运算符的应用：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭头函数"><span class="nav-number">6.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set和map集合"><span class="nav-number">7.</span> <span class="nav-text">set和map集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for…of循环"><span class="nav-number">8.</span> <span class="nav-text">for…of循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-number">9.</span> <span class="nav-text">模块</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#块级声明let、const"><span class="nav-number">1.</span> <span class="nav-text">块级声明let、const</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#let"><span class="nav-number">1.1.</span> <span class="nav-text">let</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#const"><span class="nav-number">1.2.</span> <span class="nav-text">const</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#解构赋值"><span class="nav-number">2.</span> <span class="nav-text">解构赋值</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模板字符串"><span class="nav-number">3.</span> <span class="nav-text">模板字符串</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数组Array-from-、includes"><span class="nav-number">4.</span> <span class="nav-text">数组Array.from()、includes()</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array-from-方法"><span class="nav-number">4.1.</span> <span class="nav-text">Array.from()方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#includes-方法"><span class="nav-number">4.2.</span> <span class="nav-text">includes()方法</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#扩展运算符与rest"><span class="nav-number">5.</span> <span class="nav-text">扩展运算符与rest</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展运算符"><span class="nav-number">5.1.</span> <span class="nav-text">扩展运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#rest运算符"><span class="nav-number">5.2.</span> <span class="nav-text">rest运算符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#扩展运算符的应用："><span class="nav-number">5.3.</span> <span class="nav-text">扩展运算符的应用：</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#箭头函数"><span class="nav-number">6.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set、map集合"><span class="nav-number">7.</span> <span class="nav-text">set、map集合</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#for…of循环"><span class="nav-number">8.</span> <span class="nav-text">for…of循环</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模块"><span class="nav-number">9.</span> <span class="nav-text">模块</span></a></li></ol></div>
             
 
           </div>
