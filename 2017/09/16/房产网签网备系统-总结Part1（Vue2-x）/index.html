@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,7 +79,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/房产网签网备系统/folders.jpg">
 <meta property="og:image" content="http://yoursite.com/img/房产网签网备系统/lifecycle.png">
-<meta property="og:updated_time" content="2017-11-02T15:01:10.355Z">
+<meta property="og:updated_time" content="2017-11-06T13:18:55.831Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="房产网签网备系统-总结Part1（Vue.js）">
 <meta name="twitter:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人呀~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue re">
@@ -91,9 +91,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
@@ -138,7 +138,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -328,7 +328,7 @@
         <p>从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了房产网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难得贵人呀~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue resource + elementUI + Less），后端采用C#调用WebService提供数据服务（内网服务）（感谢后端哥哥的大力支持~^o^~）。<br><em>（项目GitHub地址请戳☛，欢迎star）</em><br>这一系列总结主要想整理的是，项目所用到的新方法、思路、以及遇到的坑，包括Vue、HTML5、CSS、ES6四个部分。本篇是房产网签网备系统-总结的第一部分：Vue2.x，主要从Vue的环境配置到具体的使用来进行详细地总结。<br><a id="more"></a></p>
 <h1 id="环境搭建"><a href="#环境搭建" class="headerlink" title="环境搭建"></a>环境搭建</h1><p>安装Vue有两种方法：</p>
 <ul>
-<li><p>直接&lt;/script&gt;引入CDN</p>
+<li><p>直接&lt;script&gt;引入CDN</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;script src=&quot;https://unpkg.com/vue&quot;&gt;&lt;/script&gt;</div></pre></td></tr></table></figure>
 </li>
 <li><p>通过脚手架vue-cli创建vue项目（需要使用npm来安装）<br>CLI是Vue官方提供的一个命令行工具，需要对node.js有一定的了解，不推荐新手直接使用。</p>
@@ -727,7 +727,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
 
 
 
@@ -812,13 +812,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>

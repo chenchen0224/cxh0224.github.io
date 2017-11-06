@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next gemini use-motion" lang="zh-Hans">
+<html class="theme-next mist use-motion" lang="zh-Hans">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括类扩展classList、自定义数据属性等等。">
+<meta name="description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
 <meta name="keywords" content="房产网签网备系统,HTML5">
 <meta property="og:type" content="article">
 <meta property="og:title" content="房产网签网备系统-总结Part2（HTML5）">
 <meta property="og:url" content="http://yoursite.com/2017/09/23/房产网签网备系统-总结Part2（HTML5）/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
-<meta property="og:description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括类扩展classList、自定义数据属性等等。">
+<meta property="og:description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-10-31T15:02:48.480Z">
+<meta property="og:updated_time" content="2017-11-06T13:26:44.351Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="房产网签网备系统-总结Part2（HTML5）">
-<meta name="twitter:description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括类扩展classList、自定义数据属性等等。">
+<meta name="twitter:description" content="本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
 
 
 
@@ -88,9 +88,9 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Gemini',
+    scheme: 'Mist',
     version: '5.1.2',
-    sidebar: {"position":"right","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
@@ -135,7 +135,7 @@
     
   
 
-  <div class="container sidebar-position-right page-post-detail">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -322,7 +322,35 @@
       
 
       
-        <p>本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括类扩展classList、自定义数据属性等等。<br><a id="more"></a></p>
+        <p>本篇是房产网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&lt;footer&gt;标签、类扩展classList、web 存储等等。<br><a id="more"></a></p>
+<h1 id="footer标签"><a href="#footer标签" class="headerlink" title="footer标签"></a>footer标签</h1><p>&lt;footer&gt;标签常用来定义页脚，属于block元素。<br>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;footer&gt;</div><div class="line">  CopyRight&amp;nbsp;©&amp;nbsp;2017&amp;nbsp;XXX开发有限公司</div><div class="line">&lt;/footer&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="类扩展classList"><a href="#类扩展classList" class="headerlink" title="类扩展classList"></a>类扩展classList</h1><p>HTML5为所有元素添加了classList属性，用于操作类名。这个classList是新集合类型DOMTokenList的实例，包含以下属性和方法：</p>
+<ul>
+<li>属性：length 表示包含多少个元素</li>
+<li>方法：<br>item()：取得每个元素，或者使用[]<br>add(value)：添加给定的字符串，若已存在则不添加。<br>remove(value)：从列表中删除字符串，若不存在则不删除。<br>contains(value)：列表中是否包含字符串，返回true/false。<br>toggle(value)：若列表中已存在字符串，则删除；不存在，则添加</li>
+</ul>
+<p>这样一来，只用一行就可删除一个类名：<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;a b c&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">div.classList.remove(&quot;b&quot;);</div></pre></td></tr></table></figure>
+<p>需要注意的是，这些方法一次仅能操作一个元素。<br>有了classList属性，除非完全重写或者删除类名，一般也用不到className了。因为className属性获得的类名是一个字符串，增删改特别麻烦。</p>
+<h1 id="web-存储"><a href="#web-存储" class="headerlink" title="web 存储"></a>web 存储</h1><h2 id="localStorage和sessionStorage"><a href="#localStorage和sessionStorage" class="headerlink" title="localStorage和sessionStorage"></a>localStorage和sessionStorage</h2><p>HTML5 web 存储，是一个比cookie更好的本地存储方式，包括localStorage和sessionStorage两个存储对象。</p>
+<ul>
+<li>localStorage对象<br>localStorage是一个<strong>没有时间限制的</strong>数据存储。也就是说，一旦存储，永远不会删除，这么占内存，肯定用的不多了。</li>
+<li>sessionStorage 对象<br>sessionStorage是HTML5提出的一个针对session 数据存储的对象。数据以“键/值”对的形式存储，<strong>生命周期是当前窗口</strong>。前进后退刷新，数据都存在；关闭窗口，删除数据。</li>
+</ul>
+<h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><p>不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以sessionStorage为例）：</p>
+<ul>
+<li>保存数据：sessionStorage.setItem(key,value);</li>
+<li>读取数据：sessionStorage.getItem(key);</li>
+<li>删除单个数据：sessionStorage.removeItem(key);</li>
+<li>删除所有数据：sessionStorage.clear();</li>
+<li>得到某个索引的key：sessionStorage.key(index);</li>
+</ul>
+<h2 id="在项目中的应用"><a href="#在项目中的应用" class="headerlink" title="在项目中的应用"></a>在项目中的应用</h2><p>主要用于在两个组件之间传参，即使刷新页面参数还可以获取到。</p>
+<blockquote>
+<p>有人说组件传参用props或者store啊，其实这里有一个坑。刷新一下页面，看看还能获取到吗？结果是，props传过来的获取不到，store存储的刷新之后为初始值。</p>
+</blockquote>
+<p>栗子：本项目statList组件和developer组件之间传参，需要将用户选择的开发商名称developers_name保存，developer组件读取数据，从而根据developers_name生成当前表格数据。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">sessionStorage.setItem(&quot;devName&quot;,JSON.stringify(row.developers_name)); </div><div class="line">//见statList组件line195</div></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data () &#123;</div><div class="line">   return &#123;</div><div class="line">     //通过JSON.parse将sessionStorage存储的数据解析为js值</div><div class="line">     developer: JSON.parse(sessionStorage.getItem(&quot;devName&quot;)),</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
     </div>
@@ -419,8 +447,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -494,6 +531,22 @@
       </section>
 
       
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#footer标签"><span class="nav-number">1.</span> <span class="nav-text">footer标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类扩展classList"><span class="nav-number">2.</span> <span class="nav-text">类扩展classList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web-存储"><span class="nav-number">3.</span> <span class="nav-text">web 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#localStorage和sessionStorage"><span class="nav-number">3.1.</span> <span class="nav-text">localStorage和sessionStorage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用API"><span class="nav-number">3.2.</span> <span class="nav-text">常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在项目中的应用"><span class="nav-number">3.3.</span> <span class="nav-text">在项目中的应用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
 
       
 
@@ -525,7 +578,7 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.2</div>
 
 
 
@@ -610,13 +663,6 @@
 
   
   
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
-
-
 
   <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
 <script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
