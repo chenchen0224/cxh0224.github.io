@@ -78,7 +78,7 @@
 <meta property="og:description" content="本篇是商品房网签网备系统-总结的第四部分：ES6，主要将项目中所用到的ES6新特性撸一遍，包括let、const、解构赋值、模板字符串、数组的Array.from()和includes()方法、扩展运算符与rest、箭头函数、Set与Map集合、for-of循环、模块等。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/Arrayfrom.png">
-<meta property="og:updated_time" content="2017-11-10T12:34:48.915Z">
+<meta property="og:updated_time" content="2017-11-10T14:38:25.323Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part4（ES6）">
 <meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第四部分：ES6，主要将项目中所用到的ES6新特性撸一遍，包括let、const、解构赋值、模板字符串、数组的Array.from()和includes()方法、扩展运算符与rest、箭头函数、Set与Map集合、for-of循环、模块等。">
@@ -469,7 +469,7 @@
 <h2 id="应用-1"><a href="#应用-1" class="headerlink" title="应用"></a>应用</h2><ul>
 <li><p>简化回调函数<br>诸如filter()、forEach()、map()、sort()等高阶函数均可以接收一个箭头函数作为参数，来处理数组。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//对楼层进行排序</div><div class="line">floors.sort((a, b) =&gt; b - a);</div></pre></td></tr></table></figure>
-<p>  源码请戳☛statList组件line 164-179<br>  households组件line 201-239<br>  query组件line 56-113</p>
+<p>  <em>更多应用可参考statList组件（line 164-179）、households组件（line 201-239）、query组件（line 56-113）</em></p>
 </li>
 <li><p>修正定义在函数中的函数的this指针指向问题</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">let that = this;     </div><div class="line">this.statData = this.optionsData.filter( function ( item )&#123;</div><div class="line">  return (item.developers_name == that.value);</div><div class="line">&#125;); </div><div class="line">// 以上代码等同于   </div><div class="line">this.statData = this.optionsData.filter( item =&gt; item.developers_name === this.value );</div></pre></td></tr></table></figure>
