@@ -78,7 +78,12 @@
 <meta property="og:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport等。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/class.jpg">
-<meta property="og:updated_time" content="2017-11-15T15:03:05.331Z">
+<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/pixel.jpg">
+<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/ppi.png">
+<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/viewport.jpg">
+<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/common.png">
+<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/meta.png">
+<meta property="og:updated_time" content="2017-11-17T15:40:21.008Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part3（CSS）">
 <meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport等。">
@@ -327,12 +332,60 @@
         <p>本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport等。<br><a id="more"></a></p>
 <h1 id="CSS优先级"><a href="#CSS优先级" class="headerlink" title="CSS优先级"></a>CSS优先级</h1><ul>
 <li>不同级别的<br>!important &gt; 内联样式表（标签内部）&gt; 嵌入样式表（当前文件中）&gt; 外部样式表（外部文件中）。</li>
-<li>同一级别的<br>按照权值进行计算，规则如下：<br>!important最高<br>id=100<br>class=10<br>标签=1<br>继承=0.1</li>
+<li>同一级别的<br>按照权值进行计算，规则如下：<br>!important最高 &gt; id = 100 &gt; class = 10 &gt; 标签 = 1 &gt; 继承 = 0.1</li>
 </ul>
-<p>做项目时，发现自己在CSS优先级这块有很大的盲点。首先是对!important有点陌生，然后就是权重的计算犯了低级的错误。<br>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//CSS</div><div class="line">.test &#123;</div><div class="line">    color:</div><div class="line">     pink;</div><div class="line">&#125;</div><div class="line">div.test &#123;</div><div class="line">    color: blue;</div><div class="line">&#125;</div><div class="line">//html</div><div class="line">&lt;div class=&quot;test&quot;&gt;div&lt;/div&gt;</div><div class="line">&lt;p class=&quot;test&quot;&gt;段落&lt;/p&gt;</div></pre></td></tr></table></figure></p>
+<p>做项目时，发现自己在CSS优先级这块有很大的盲点。首先是对!important有点陌生，然后就是权重的计算犯了低级的错误。<br>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">//CSS</div><div class="line">.test &#123;</div><div class="line">    color: pink;</div><div class="line">&#125;</div><div class="line">div.test &#123;</div><div class="line">    color: blue;</div><div class="line">&#125;</div><div class="line">//html</div><div class="line">&lt;div class=&quot;test&quot;&gt;div&lt;/div&gt;</div><div class="line">&lt;p class=&quot;test&quot;&gt;段落&lt;/p&gt;</div></pre></td></tr></table></figure></p>
 <p>上边的这个栗子，.test的权重是10，div.test的权重是10+1=11，因此div.test的权重是高于.test的。<br><img src="/img/商品房网签网备系统/class.jpg" alt=""><br>如果要使用!important，需要写在分号前面，上边的栗子可以这样子写color: pink !important;</p>
-<h1 id="媒体查询-media"><a href="#媒体查询-media" class="headerlink" title="媒体查询@media"></a>媒体查询@media</h1><p>@media 可以针对不同的屏幕尺寸设置不同的样式，特别是如果你需要设置设计响应式的页面，@media 是非常有用的。</p>
-<h1 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h1>
+<h1 id="媒体查询-media"><a href="#媒体查询-media" class="headerlink" title="媒体查询@media"></a>媒体查询@media</h1><p>@media可以针对不同的媒体类型、不同的屏幕尺寸定义不同的样式。特别是如果你需要设置设计响应式的页面，@media是非常有用的。</p>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@media mediatype and|not|only (media feature) &#123;</div><div class="line">    CSS-Code;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>以@media开头</li>
+<li>@media后面的是零个或者多个表达式，用and/not/only连接。<ul>
+<li>必须以媒体类型作为第一个表达式。此处为screen，还可以是print（打印机）</li>
+<li>所有的表达式都应包含在括号内，除非只有一个单词</li>
+</ul>
+</li>
+<li>当所有的条件表达式结果为真时，执行{}里的样式</li>
+</ul>
+<blockquote>
+<p>小贴士：{}里的样式相当于对原有样式进行重写，因此必须<strong><em>提高权重覆盖掉原有样式</em></strong>。<br>提高权重的几种方法：!important（尽量少用）、类选择器改用id选择器、权值++等等。</p>
+</blockquote>
+<h2 id="应用"><a href="#应用" class="headerlink" title="应用"></a>应用</h2><p>本项目在实现页面响应式和打印时都用到了媒体查询。</p>
+<h3 id="打印页面"><a href="#打印页面" class="headerlink" title="打印页面"></a>打印页面</h3><p>打印页面时，通常需要打印页面的一部分而非全部，因此我们需要将不需要打印的元素隐藏起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@media print &#123;</div><div class="line">  //媒体查询，打印</div><div class="line">  .noprint &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这条查询的媒体类型为print（打印机）</p>
+<p><em>源码请戳☛☛☛<br><a href="https://github.com/huaz224/realEstate/blob/master/src/App.vue" target="_blank" rel="external">https://github.com/huaz224/realEstate/blob/master/src/App.vue</a><br>line 61-72</em></p>
+<h3 id="响应式页面"><a href="#响应式页面" class="headerlink" title="响应式页面"></a>响应式页面</h3><p>不管是PC端还是移动端，针对不同的屏幕尺寸，媒体查询都可以检测到。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@media screen and (max-height: 400px) &#123;</div><div class="line">  //媒体查询，解决绝对定位与手机软键盘冲突</div><div class="line">  #footer &#123;</div><div class="line">    display: none;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>这条媒体查询的含义是：当屏幕高度小于等于400px时，也就是手机软键盘出现时，id为footer的页脚要隐藏起来。</p>
+<p><em>源码请戳☛☛☛<br><a href="https://github.com/huaz224/realEstate/blob/master/src/App.vue" target="_blank" rel="external">https://github.com/huaz224/realEstate/blob/master/src/App.vue</a><br>line 74-165</em></p>
+<h1 id="viewport"><a href="#viewport" class="headerlink" title="viewport"></a>viewport</h1><p>在做移动端适配时，遇到一个问题，PC的页面在手机屏幕上只显示了一部分，剩余的部分需要滚动才可以看到，而且input输入框一点击页面就放大却缩不回去。度了很多资料，原来是不了解移动端的viewport。</p>
+<h2 id="一些单位和概念"><a href="#一些单位和概念" class="headerlink" title="一些单位和概念"></a>一些单位和概念</h2><p>在介绍viewport之前，先来罗列下可能看到过、迷糊过、放弃过的一些单位和概念：</p>
+<ul>
+<li><p>物理像素、逻辑像素</p>
+<ul>
+<li>dp、pt：（device independent pixels），物理像素，显示屏幕的最小物理单位（固定大小，不会改变）<br>我们平常所说的分辨率就是物理像素</li>
+<li>px：（css pixel），逻辑像素，开发中使用的抽象单位（可以根据不同的设备变大变小）</li>
+</ul>
+</li>
+<li><p>dpr<br>设备像素比（devicePixelRatio），等于物理像素与逻辑像素在数量上的比值</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">dpr = 物理像素 / 逻辑像素（某一方向上）</div></pre></td></tr></table></figure>
+<p>  比如：iphone5 的分辨率是 640 * 1136 （物理像素），开发中应该是320 * 568 （逻辑像素），原因是dpr = 2，即一个css像素由4个物理像素渲染。<br><img src="/img/商品房网签网备系统/pixel.jpg" alt=""></p>
+</li>
+<li><p>ppi<br>屏幕上每英寸的像素点的数量，即屏幕像素密度。ppi越高，像素数越高，越清晰。<br>注：ppi是用物理像素算，而不是px<br>比如：iphone5 的分辨率是 640 * 1136<br><img src="/img/商品房网签网备系统/ppi.png" alt=""></p>
+</li>
+</ul>
+<h2 id="viewport-1"><a href="#viewport-1" class="headerlink" title="viewport"></a>viewport</h2><p>一个PC端的页面在移动设备上显示的效果是怎样的呢？？？我们来看下面这张图片<br><img src="/img/商品房网签网备系统/viewport.jpg" alt=""><br>两个viewport将手机屏幕分成两层：</p>
+<ul>
+<li>底层是布局viewport，页面渲染在底层。<br>通过document.documentElement.clientWidth获取（IE则是document.body.clientWidth）</li>
+<li>顶层是可视viewport，通过缩放来控制可视区域<br>通过window.innerWidth（IE通过document.documentElement.clientWidth）</li>
+</ul>
+<p>由上图可以看到，PC端的页面默认填充的是布局viewport，它的宽度可能远远大于手机屏幕。我们在课时viewport中看到的仅仅是整个页面的一部分内容，需要滑动横向滚动条才可以看到全部页面。<br>那么，我们怎样让布局viewport的宽度 = 课时viewport的宽度即屏幕宽度呢？？？请看下一小节</p>
+<h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><p>在HTML的head标签中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>该meta标签的作用是：让当前viewport的宽度（默认布局viewport）等于device-width。<br>其中，width可以取定值，也可以=device-width，一般为了兼容更多设备，让布局viewport=device-width。<br>device-width又是什么鬼捏？？？<br>大多数情况下为设备自己的宽度，可以用window.innerWidth来获取，iOS, android基本上默认都是980px。</p>
+<p>设置initial-scale=1后，课时viewport=布局viewport</p>
+<p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">body &#123;</div><div class="line">    margin: 0;</div><div class="line">&#125;</div><div class="line">.test &#123;</div><div class="line">    width: 320px;</div><div class="line">    height: 568px;</div><div class="line">    background-color: pink;</div><div class="line">    color: #fff;</div><div class="line">    font-size: 60px;</div><div class="line">    text-align: center;</div><div class="line">    line-height: 568px;</div><div class="line">    font-family: cursive;</div><div class="line">&#125;</div><div class="line">//html</div><div class="line">&lt;div class=&quot;test&quot;&gt;320*568&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>没有加meta标签时，效果见图<br><img src="/img/商品房网签网备系统/common.png" alt=""><br>添加meta标签后，效果见图<br><img src="/img/商品房网签网备系统/meta.png" alt="">　</p>
+<p>移动web最佳viewport配置：<br>布局viewport = 设备宽度 = 课时viewport</p>
+
       
     </div>
     
@@ -521,7 +574,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS优先级"><span class="nav-number">1.</span> <span class="nav-text">CSS优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-media"><span class="nav-number">2.</span> <span class="nav-text">媒体查询@media</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport"><span class="nav-number">3.</span> <span class="nav-text">viewport</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS优先级"><span class="nav-number">1.</span> <span class="nav-text">CSS优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-media"><span class="nav-number">2.</span> <span class="nav-text">媒体查询@media</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">2.2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打印页面"><span class="nav-number">2.2.1.</span> <span class="nav-text">打印页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式页面"><span class="nav-number">2.2.2.</span> <span class="nav-text">响应式页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport"><span class="nav-number">3.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些单位和概念"><span class="nav-number">3.1.</span> <span class="nav-text">一些单位和概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport-1"><span class="nav-number">3.2.</span> <span class="nav-text">viewport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta标签"><span class="nav-number">3.3.</span> <span class="nav-text">meta标签</span></a></li></ol></li></ol></div>
             
 
           </div>
