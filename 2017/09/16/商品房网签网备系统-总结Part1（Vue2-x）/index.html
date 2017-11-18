@@ -77,13 +77,12 @@
 <meta property="og:site_name" content="风到这里就是粘">
 <meta property="og:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/lifecycle.png">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/data.jpg">
-<meta property="og:updated_time" content="2017-11-18T04:22:08.677Z">
+<meta property="og:updated_time" content="2017-11-18T12:04:40.278Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part1（Vue.js）">
 <meta name="twitter:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
-<meta name="twitter:image" content="http://yoursite.com/img/商品房网签网备系统/lifecycle.png">
+<meta name="twitter:image" content="http://yoursite.com/img/商品房网签网备系统/data.jpg">
 
 
 
@@ -463,7 +462,10 @@
 <h2 id="钩子函数"><a href="#钩子函数" class="headerlink" title="钩子函数"></a>钩子函数</h2><p>每个Vue实例在被创建时都要经过一系列的初始化过程，同时在这个过程中也会运行一些叫做生命周期钩子的函数。这里需要注意的是：</p>
 <ul>
 <li>钩子的this指向调用它的Vue实例</li>
-<li>不要在选项属性或回调上使用箭头函数<br><img src="/img/商品房网签网备系统/lifecycle.png" alt=""></li>
+<li>不要在选项属性或回调上使用箭头函数</li>
+</ul>
+<p><strong>常用的钩子函数包括：</strong></p>
+<ul>
 <li>beforeCreate<br>vue实例创建后立即执行，此时data、methods都没有被初始化，无法直接访问。</li>
 <li>created<br>数据、事件等初始化完毕执行，但DOM并未生成，el属性不存在。<br>可以直接访问data和methods等，但无法获取DOM元素。<br>这个钩子里比较适合写Loading结束、http请求、一些初始化操作。<br><em>（本项目使用vue-resource在created钩子里写了http请求，详见query、modeMng等组件。）</em></li>
 <li>beforeMount<br>模板挂载之前，完成了el属性的初始化，但并未挂载，仅仅是“占坑”。</li>
@@ -507,10 +509,23 @@
 <ul>
 <li><p>props<br>父组件向子组件传数据时，可以在父组件的HTML标签添加中间属性（注意是v-band:中间属性=’data里的属性名’），然后子组件中使用props注册该中间属性（注意：props:[‘xxx’]加引号）后，即可在子组件中使用来自父组件的数据</p>
 </li>
-<li><p>使用$emit触发事件传递数据<br>1、当子组件的方法被调用时，子组件通过this.$emit(‘自定义事件名称’,this.子组件data中的属性)触发自定义事件<br>2、父组件在子组件HTML标签里直接用 v-on 来监听自定义事件的触发，进而触发父组件自己的事件<br>3、在父组件自己的事件中，定义时传入一个参数，这个参数赋值给父组件data里的属性，就完成了传参。</p>
+<li><p>使用$emit触发事件传递数据</p>
+<ul>
+<li>当子组件的方法被调用时，子组件通过this.$emit(‘自定义事件名称’,this.子组件data中的属性)触发自定义事件</li>
+<li>父组件在子组件HTML标签里直接用 v-on 来监听自定义事件的触发，进而触发父组件自己的事件</li>
+<li>在父组件自己的事件中，定义时传入一个参数，这个参数赋值给父组件data里的属性，就完成了传参。</li>
+</ul>
 </li>
 </ul>
-<h3 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h3><p>this.$router.push({name: ‘showMode’,params:{ id: 44,readonly:0}});</p>
+<p>这种传参方式在项目中用的并不多，就不再啰嗦了。</p>
+<h3 id="使用路由实例的push方法"><a href="#使用路由实例的push方法" class="headerlink" title="使用路由实例的push方法"></a>使用路由实例的push方法</h3><p><strong>push方法介绍</strong><br>在Vue实例内部，你可以通过$router 访问路由实例。父路由可以通过push()方法，导航到不同的URL。push()方法的参数可以是一个字符串路径，也可以是一个描述地址的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">// 字符串</div><div class="line">router.push(&apos;home&apos;)</div><div class="line">// 对象</div><div class="line">router.push(&#123; path: &apos;home&apos; &#125;)</div><div class="line">// 命名的路由</div><div class="line">router.push(&#123; name: &apos;user&apos;, params: &#123; userId: 123 &#125;&#125;)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>注意：如果提供了path，params会被忽略。</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">// 这里的params不会生效</div><div class="line">router.push(&#123; path: &apos;/user&apos;, params: &#123; userId: 123 &#125;&#125;)</div></pre></td></tr></table></figure>
+<p><strong>项目中的应用</strong><br>在本项目中，使用命名的路由在两个组件之间传参。父路由通过在name属性指定向哪个路由传参数，通过params属性将要传递的参数放在一个对象中。在这个对象中，参数以“参数名：参数值”的格式传递，参数名可以自己随便取，就像声明变量一样；多个参数以”,”隔开。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.$router.push(&#123;name: &apos;showMode&apos;,params:&#123; id: 44&#125;&#125;);</div></pre></td></tr></table></figure></p>
+<p>子路由通过 this.$route.params.参数名 来接收父路由传递过来的参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">this.$route.params.id</div></pre></td></tr></table></figure></p>
+<p>这样传参有一个问题：刷新就消失。因此，非常有必要学习HTML5的web本地存储。</p>
 <h3 id="使用HTML5的web存储"><a href="#使用HTML5的web存储" class="headerlink" title="使用HTML5的web存储"></a>使用HTML5的web存储</h3><p>详见<a href="https://huaz224.github.io/2017/09/23/%E5%95%86%E5%93%81%E6%88%BF%E7%BD%91%E7%AD%BE%E7%BD%91%E5%A4%87%E7%B3%BB%E7%BB%9F-%E6%80%BB%E7%BB%93Part2%EF%BC%88HTML5%EF%BC%89/#more" target="_blank" rel="external">本系列总结第二部分-HTML5的web存储</a></p>
 <h2 id="数组或对象的更新检测问题"><a href="#数组或对象的更新检测问题" class="headerlink" title="数组或对象的更新检测问题"></a>数组或对象的更新检测问题</h2><p>对于数组，受JS限制，Vue不能检测data之外数组的以下变动：</p>
 <ul>
@@ -521,14 +536,13 @@
 <blockquote>
 <p>可以通过Vue.set(target, key, value)或arr.splice()解决，注意vm.$set只是全局Vue.set的别名</p>
 </blockquote>
-<p><strong>栗子：</strong><br>//html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&lt;ul&gt;</div><div class="line">  &lt;li v-for=&quot;item in arr&quot;&gt;</div><div class="line">    &#123;&#123;item&#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">  &lt;li v-for=&quot;(value,key) in person&quot;&gt;</div><div class="line">    &#123;&#123; key &#125;&#125;: &#123;&#123; value &#125;&#125;</div><div class="line">  &lt;/li&gt;</div><div class="line">&lt;/ul&gt;</div><div class="line">&lt;button type=&quot;button&quot; @click=&quot;add&quot;&gt;Click Me!&lt;/button&gt;</div></pre></td></tr></table></figure></p>
-<p>//script<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      arr: [0, 1],</div><div class="line">      person: &#123;</div><div class="line">        name: &apos;chen&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    add: function() &#123;</div><div class="line">      //数组</div><div class="line">      this.arr[0] = &apos;a&apos;;</div><div class="line">      this.arr.length = 3;</div><div class="line">      this.$set(this.arr, 2, &quot;c&quot;);</div><div class="line">      //对象      </div><div class="line">      this.$set(this.person, &quot;age&quot;, 24);</div><div class="line">      this.person[&quot;sex&quot;] = &quot;男&quot;;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><strong>栗子：</strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">export default &#123;</div><div class="line">  data() &#123;</div><div class="line">    return &#123;</div><div class="line">      arr: [0, 1],</div><div class="line">      person: &#123;</div><div class="line">        name: &apos;chen&apos;</div><div class="line">      &#125;</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  methods: &#123;</div><div class="line">    add: function() &#123;</div><div class="line">      //数组</div><div class="line">      this.arr[0] = &apos;a&apos;;</div><div class="line">      this.arr.length = 4;</div><div class="line">      this.$set(this.arr, 2, &quot;c&quot;);</div><div class="line">      //对象      </div><div class="line">      this.$set(this.person, &quot;age&quot;, 24);</div><div class="line">      this.person[&quot;sex&quot;] = &quot;男&quot;;</div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>//结果<br><img src="/img/商品房网签网备系统/data.jpg" alt=""></p>
 <blockquote>
-<p>小贴士：this.$set()方法调用时，页面会全部渲染一遍，所以没有使用Vue.set()方法所做的更改也更新到了DOM。</p>
+<p>小贴士：this.$set()方法调用时，页面会全部渲染一遍，所以没有使用Vue.set()方法所做的更改也更新到了DOM，比如this.arr.length = 4;</p>
 </blockquote>
 <p><em>在本项目中，houseData对象是响应式的，但添加属性后非响应式的，并不会渲染DOM。<br>详见query组件，源码请戳☛☛☛<br><a href="https://github.com/huaz224/realEstate/blob/master/src/components/inc/query.vue" target="_blank" rel="external">https://github.com/huaz224/realEstate/blob/master/src/components/inc/query.vue</a><br>line 133</em></p>
-<h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>通过这个项目，我深深的体验到了Vue的强大，它抛弃了传统的直接操作dom的习惯，而是采用data数据驱动view的理念，使新手如我都可以快速上手。<br>最后奉上Vue全家桶全部参考文档：</p>
+<h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>通过这个项目，我深深的体验到了Vue的强大，它抛弃了传统的直接操作dom的习惯，而是采用data数据驱动view的理念，使新手如我都可以快速上手。学到这里，只是入了Vue的门，要想精通其实还有很长的路要走，一起加油辣。<br>最后，奉上Vue全家桶全部参考文档：</p>
 <ul>
 <li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="external">vue.js</a></li>
 <li><a href="https://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router</a></li>
@@ -573,8 +587,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/09/一个前端渣渣的学习之路/" rel="next" title="一个前端渣渣的学习之路">
-                <i class="fa fa-chevron-left"></i> 一个前端渣渣的学习之路
+              <a href="/2017/09/06/如何让页脚footer始终居底显示？/" rel="next" title="如何让页脚footer始终居底显示？">
+                <i class="fa fa-chevron-left"></i> 如何让页脚footer始终居底显示？
               </a>
             
           </div>
@@ -665,7 +679,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -730,7 +744,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装node-js"><span class="nav-number">1.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装vue-cli"><span class="nav-number">1.2.</span> <span class="nav-text">安装vue-cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建项目"><span class="nav-number">1.3.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选的扩展"><span class="nav-number">1.4.</span> <span class="nav-text">可选的扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入门介绍"><span class="nav-number">2.</span> <span class="nav-text">入门介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件结构"><span class="nav-number">2.2.</span> <span class="nav-text">组件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data"><span class="nav-number">2.3.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#methods"><span class="nav-number">2.4.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed-与-watch"><span class="nav-number">2.5.</span> <span class="nav-text">computed 与 watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#钩子函数"><span class="nav-number">2.6.</span> <span class="nav-text">钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件渲染-v-if-与-v-show"><span class="nav-number">2.7.</span> <span class="nav-text">条件渲染 v-if 与 v-show</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ElementUI"><span class="nav-number">3.</span> <span class="nav-text">ElementUI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Less"><span class="nav-number">4.</span> <span class="nav-text">Less</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包项目"><span class="nav-number">5.</span> <span class="nav-text">打包项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">6.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件之间传参的几种方式"><span class="nav-number">6.1.</span> <span class="nav-text">组件之间传参的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props-down-events-up"><span class="nav-number">6.1.1.</span> <span class="nav-text">props down, events up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用路由"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用路由</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用HTML5的web存储"><span class="nav-number">6.1.3.</span> <span class="nav-text">使用HTML5的web存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组或对象的更新检测问题"><span class="nav-number">6.2.</span> <span class="nav-text">数组或对象的更新检测问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后想说"><span class="nav-number">7.</span> <span class="nav-text">最后想说</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#环境搭建"><span class="nav-number">1.</span> <span class="nav-text">环境搭建</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装node-js"><span class="nav-number">1.1.</span> <span class="nav-text">安装node.js</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#安装vue-cli"><span class="nav-number">1.2.</span> <span class="nav-text">安装vue-cli</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#新建项目"><span class="nav-number">1.3.</span> <span class="nav-text">新建项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可选的扩展"><span class="nav-number">1.4.</span> <span class="nav-text">可选的扩展</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#入门介绍"><span class="nav-number">2.</span> <span class="nav-text">入门介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#项目结构"><span class="nav-number">2.1.</span> <span class="nav-text">项目结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#组件结构"><span class="nav-number">2.2.</span> <span class="nav-text">组件结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#data"><span class="nav-number">2.3.</span> <span class="nav-text">data</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#methods"><span class="nav-number">2.4.</span> <span class="nav-text">methods</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#computed-与-watch"><span class="nav-number">2.5.</span> <span class="nav-text">computed 与 watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#钩子函数"><span class="nav-number">2.6.</span> <span class="nav-text">钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#条件渲染-v-if-与-v-show"><span class="nav-number">2.7.</span> <span class="nav-text">条件渲染 v-if 与 v-show</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ElementUI"><span class="nav-number">3.</span> <span class="nav-text">ElementUI</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Less"><span class="nav-number">4.</span> <span class="nav-text">Less</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#打包项目"><span class="nav-number">5.</span> <span class="nav-text">打包项目</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#遇到的问题"><span class="nav-number">6.</span> <span class="nav-text">遇到的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#组件之间传参的几种方式"><span class="nav-number">6.1.</span> <span class="nav-text">组件之间传参的几种方式</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#props-down-events-up"><span class="nav-number">6.1.1.</span> <span class="nav-text">props down, events up</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用路由实例的push方法"><span class="nav-number">6.1.2.</span> <span class="nav-text">使用路由实例的push方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用HTML5的web存储"><span class="nav-number">6.1.3.</span> <span class="nav-text">使用HTML5的web存储</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数组或对象的更新检测问题"><span class="nav-number">6.2.</span> <span class="nav-text">数组或对象的更新检测问题</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后想说"><span class="nav-number">7.</span> <span class="nav-text">最后想说</span></a></li></ol></div>
             
 
           </div>

@@ -53,7 +53,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="商品房网签网备系统,HTML," />
+  <meta name="keywords" content="CSS," />
 
 
 
@@ -69,18 +69,20 @@
 
 
 
-<meta name="description" content="本篇是商品房网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
-<meta name="keywords" content="商品房网签网备系统,HTML">
+<meta name="description" content="在我们写各种各样的静态页面时，很多时候都要写底部的页脚。今天就来讨论一下如何让页脚footer始终居底显示？">
+<meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="商品房网签网备系统-总结Part2（HTML5）">
-<meta property="og:url" content="http://yoursite.com/2017/09/23/商品房网签网备系统-总结Part2（HTML5）/index.html">
+<meta property="og:title" content="如何让页脚footer始终居底显示？">
+<meta property="og:url" content="http://yoursite.com/2017/09/06/如何让页脚footer始终居底显示？/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
-<meta property="og:description" content="本篇是商品房网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
+<meta property="og:description" content="在我们写各种各样的静态页面时，很多时候都要写底部的页脚。今天就来讨论一下如何让页脚footer始终居底显示？">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-18T13:30:45.357Z">
+<meta property="og:image" content="http://yoursite.com/img/如何让页脚footer始终居底显示/result.jpg">
+<meta property="og:updated_time" content="2017-11-18T14:39:06.164Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="商品房网签网备系统-总结Part2（HTML5）">
-<meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&amp;lt;footer&amp;gt;标签、类扩展classList、web 存储等等。">
+<meta name="twitter:title" content="如何让页脚footer始终居底显示？">
+<meta name="twitter:description" content="在我们写各种各样的静态页面时，很多时候都要写底部的页脚。今天就来讨论一下如何让页脚footer始终居底显示？">
+<meta name="twitter:image" content="http://yoursite.com/img/如何让页脚footer始终居底显示/result.jpg">
 
 
 
@@ -110,13 +112,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/09/23/商品房网签网备系统-总结Part2（HTML5）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/09/06/如何让页脚footer始终居底显示？/"/>
 
 
 
 
 
-  <title>商品房网签网备系统-总结Part2（HTML5） | 风到这里就是粘</title>
+  <title>如何让页脚footer始终居底显示？ | 风到这里就是粘</title>
   
 
 
@@ -233,7 +235,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/23/商品房网签网备系统-总结Part2（HTML5）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/09/06/如何让页脚footer始终居底显示？/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HuaZ">
@@ -250,7 +252,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">商品房网签网备系统-总结Part2（HTML5）</h1>
+          <h1 class="post-title" itemprop="name headline">如何让页脚footer始终居底显示？</h1>
         
 
         <div class="post-meta">
@@ -262,8 +264,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-23T19:26:03+08:00">
-                2017-09-23
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-06T21:22:39+08:00">
+                2017-09-06
               </time>
             
 
@@ -285,8 +287,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/总结/" itemprop="url" rel="index">
-                    <span itemprop="name">总结</span>
+                  <a href="/categories/技术水波文/" itemprop="url" rel="index">
+                    <span itemprop="name">技术水波文</span>
                   </a>
                 </span>
 
@@ -322,36 +324,13 @@
       
 
       
-        <p>本篇是商品房网签网备系统-总结的第二部分：HTML5，主要来总结项目中所用到的HTML5特性，包括&lt;footer&gt;标签、类扩展classList、web 存储等等。<br><a id="more"></a></p>
-<h1 id="footer标签"><a href="#footer标签" class="headerlink" title="footer标签"></a>footer标签</h1><p>&lt;footer&gt;标签常用来定义页脚，属于block元素。<br>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;footer&gt;</div><div class="line">  CopyRight&amp;nbsp;©&amp;nbsp;2017&amp;nbsp;XXX开发有限公司</div><div class="line">&lt;/footer&gt;</div></pre></td></tr></table></figure></p>
-<h1 id="类扩展classList"><a href="#类扩展classList" class="headerlink" title="类扩展classList"></a>类扩展classList</h1><p>HTML5为所有元素添加了classList属性，用于操作类名。这个classList是新集合类型DOMTokenList的实例，包含以下属性和方法：</p>
-<ul>
-<li>属性：length 表示包含多少个元素</li>
-<li>方法：<br>item()：取得每个元素，或者使用[]<br>add(value)：添加给定的字符串，若已存在则不添加。<br>remove(value)：从列表中删除字符串，若不存在则不删除。<br>contains(value)：列表中是否包含字符串，返回true/false。<br>toggle(value)：若列表中已存在字符串，则删除；不存在，则添加</li>
-</ul>
-<p>这样一来，只用一行就可删除一个类名：<br>比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;a b c&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">div.classList.remove(&quot;b&quot;);</div></pre></td></tr></table></figure>
-<p>需要注意的是，这些方法一次仅能操作一个元素。<br>有了classList属性，除非完全重写或者删除类名，一般也用不到className了。因为className属性获得的类名是一个字符串，增删改特别麻烦。</p>
-<h1 id="web-存储"><a href="#web-存储" class="headerlink" title="web 存储"></a>web 存储</h1><h2 id="localStorage和sessionStorage"><a href="#localStorage和sessionStorage" class="headerlink" title="localStorage和sessionStorage"></a>localStorage和sessionStorage</h2><p>HTML5 web 存储，是一个比cookie更好的本地存储方式，包括localStorage和sessionStorage两个存储对象。</p>
-<ul>
-<li>localStorage对象<br>localStorage是一个<strong>没有时间限制的</strong>数据存储。也就是说，一旦存储，永远不会删除，这么占内存，肯定用的不多了。</li>
-<li>sessionStorage 对象<br>sessionStorage是HTML5提出的一个针对session 数据存储的对象。数据以“键/值”对的形式存储，<strong>生命周期是当前窗口</strong>。前进后退刷新，数据都存在；关闭窗口，删除数据。</li>
-</ul>
-<h2 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h2><p>不管是 localStorage，还是 sessionStorage，可使用的API都相同，常用的有如下几个（以sessionStorage为例）：</p>
-<ul>
-<li>保存数据：sessionStorage.setItem(key,value);</li>
-<li>读取数据：sessionStorage.getItem(key);</li>
-<li>删除单个数据：sessionStorage.removeItem(key);</li>
-<li>删除所有数据：sessionStorage.clear();</li>
-<li>得到某个索引的key：sessionStorage.key(index);</li>
-</ul>
-<h2 id="在项目中的应用"><a href="#在项目中的应用" class="headerlink" title="在项目中的应用"></a>在项目中的应用</h2><p>主要用于在两个组件之间传参，即使刷新页面还可以获取到参数。</p>
-<blockquote>
-<p>有人说组件传参用props或者store啊，其实这里有一个坑。刷新一下页面，看看还能获取到吗？结果是，props传过来的获取不到，store存储的刷新之后为初始值。</p>
-</blockquote>
-<p><em>在本项目中，statList组件和developer组件之间传参，需要将用户选择的开发商名称developers_name保存，developer组件读取数据，从而根据developers_name生成当前表格数据。</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sessionStorage.setItem(&quot;devName&quot;,JSON.stringify(row.developers_name));</div></pre></td></tr></table></figure></p>
-<p><em>源码请戳☛☛☛<a href="https://github.com/huaz224/realEstate/blob/master/src/components/gov/statList.vue" target="_blank" rel="external">https://github.com/huaz224/realEstate/blob/master/src/components/gov/statList.vue</a>  line 195</em><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">data () &#123;</div><div class="line">   return &#123;</div><div class="line">     //通过JSON.parse将sessionStorage存储的数据解析为js值</div><div class="line">     developer: JSON.parse(sessionStorage.getItem(&quot;devName&quot;)),</div><div class="line">   &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><em>源码请戳☛☛☛<a href="https://github.com/huaz224/realEstate/blob/master/src/components/gov/developer.vue" target="_blank" rel="external">https://github.com/huaz224/realEstate/blob/master/src/components/gov/developer.vue</a>  line 39</em></p>
+        <p>在我们写各种各样的静态页面时，很多时候都要写底部的页脚。今天就来讨论一下如何让页脚footer始终居底显示？<br><a id="more"></a></p>
+<p>从一个栗子开始，先来看html部分<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;main&quot;&gt;main&lt;/div&gt;</div><div class="line">&lt;footer&gt;</div><div class="line">    CopyRight&amp;nbsp;©&amp;nbsp;2017&amp;nbsp;XXX有限公司</div><div class="line">&lt;/footer&gt;</div></pre></td></tr></table></figure></p>
+<h1 id="当页面内容撑满浏览器高度时"><a href="#当页面内容撑满浏览器高度时" class="headerlink" title="当页面内容撑满浏览器高度时"></a>当页面内容撑满浏览器高度时</h1><p>设置html的height:100%，就获取了浏览器的定高。main和footer正好可以撑满整个页面。<br>方法一：main占高度的97%，footer占高度的3%<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">html,</div><div class="line">body &#123;</div><div class="line">    height: 100%;</div><div class="line">    margin: 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main &#123;</div><div class="line">    height: 97%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">footer &#123;</div><div class="line">    height: 3%;</div><div class="line">    font-size: 12px;</div><div class="line">    text-align: center;</div><div class="line">    background-color: grey;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>方法二：main占高度的100%，设置margin-bottom: -50px;footer的高度为50px。<br>注意：margin-bottom和footer的高度必须为定值，不能采用百分比。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">.main &#123;</div><div class="line">    height: 100%;</div><div class="line">    background-color: pink;</div><div class="line">    margin-bottom: -50px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">footer &#123;</div><div class="line">    height: 50px;</div><div class="line">    font-size: 12px;</div><div class="line">    text-align: center;</div><div class="line">    background-color: grey;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h1 id="当页面内容未撑满浏览器高度时"><a href="#当页面内容未撑满浏览器高度时" class="headerlink" title="当页面内容未撑满浏览器高度时"></a>当页面内容未撑满浏览器高度时</h1><p>当main的高度为50%时，需要为main和footer加个包裹层div，通过footer标签相对于父层div绝对定位来实现居底。<br>html<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;wrap&quot;&gt;</div><div class="line">    &lt;div class=&quot;main&quot;&gt;main&lt;/div&gt;</div><div class="line">    &lt;footer&gt;</div><div class="line">        CopyRight&amp;nbsp;©&amp;nbsp;2017&amp;nbsp;XXX有限公司</div><div class="line">    &lt;/footer&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>css<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.wrap &#123;</div><div class="line">    height: 100%;</div><div class="line">    position: relative;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.main &#123;</div><div class="line">    height: 50%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">footer &#123;</div><div class="line">    position: absolute;</div><div class="line">    bottom: 0;</div><div class="line">    width:100%;//footer标签宽度撑满屏幕宽度</div><div class="line">    font-size: 12px;</div><div class="line">    text-align: center;//文字居中</div><div class="line">    background-color: grey;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>不管用哪种方法，显示效果都是一样的，结果见图<br><img src="/img/如何让页脚footer始终居底显示/result.jpg" alt=""></p>
 
       
     </div>
@@ -369,9 +348,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/商品房网签网备系统/" rel="tag"># 商品房网签网备系统</a>
-          
-            <a href="/tags/HTML/" rel="tag"># HTML</a>
+            <a href="/tags/CSS/" rel="tag"># CSS</a>
           
         </div>
       
@@ -384,8 +361,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/09/16/商品房网签网备系统-总结Part1（Vue2-x）/" rel="next" title="商品房网签网备系统-总结Part1（Vue.js）">
-                <i class="fa fa-chevron-left"></i> 商品房网签网备系统-总结Part1（Vue.js）
+              <a href="/2017/09/02/一个前端渣渣的学习之路/" rel="next" title="一个前端渣渣的学习之路">
+                <i class="fa fa-chevron-left"></i> 一个前端渣渣的学习之路
               </a>
             
           </div>
@@ -394,8 +371,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/09/25/商品房网签网备系统-总结Part3（CSS）/" rel="prev" title="商品房网签网备系统-总结Part3（CSS）">
-                商品房网签网备系统-总结Part3（CSS） <i class="fa fa-chevron-right"></i>
+              <a href="/2017/09/16/商品房网签网备系统-总结Part1（Vue2-x）/" rel="prev" title="商品房网签网备系统-总结Part1（Vue.js）">
+                商品房网签网备系统-总结Part1（Vue.js） <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -541,7 +518,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#footer标签"><span class="nav-number">1.</span> <span class="nav-text">footer标签</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#类扩展classList"><span class="nav-number">2.</span> <span class="nav-text">类扩展classList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#web-存储"><span class="nav-number">3.</span> <span class="nav-text">web 存储</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#localStorage和sessionStorage"><span class="nav-number">3.1.</span> <span class="nav-text">localStorage和sessionStorage</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常用API"><span class="nav-number">3.2.</span> <span class="nav-text">常用API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在项目中的应用"><span class="nav-number">3.3.</span> <span class="nav-text">在项目中的应用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#当页面内容撑满浏览器高度时"><span class="nav-number">1.</span> <span class="nav-text">当页面内容撑满浏览器高度时</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#当页面内容未撑满浏览器高度时"><span class="nav-number">2.</span> <span class="nav-text">当页面内容未撑满浏览器高度时</span></a></li></ol></div>
             
 
           </div>
