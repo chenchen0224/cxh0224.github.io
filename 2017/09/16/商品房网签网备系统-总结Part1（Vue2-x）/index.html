@@ -79,7 +79,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/lifecycle.png">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/data.jpg">
-<meta property="og:updated_time" content="2017-11-15T02:14:36.396Z">
+<meta property="og:updated_time" content="2017-11-18T04:22:08.677Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part1（Vue.js）">
 <meta name="twitter:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
@@ -507,11 +507,12 @@
 <ul>
 <li><p>props<br>父组件向子组件传数据时，可以在父组件的HTML标签添加中间属性（注意是v-band:中间属性=’data里的属性名’），然后子组件中使用props注册该中间属性（注意：props:[‘xxx’]加引号）后，即可在子组件中使用来自父组件的数据</p>
 </li>
-<li><p>使用 $emit触发事件传递数据<br>1、当子组件的方法被调用时，子组件通过this.$emit(‘自定义事件名称’,this.子组件data中的属性)触发自定义事件<br>2、父组件在子组件HTML标签里直接用 v-on 来监听自定义事件的触发，进而触发父组件自己的事件<br>3、在父组件自己的事件中，定义时传入一个参数，这个参数赋值给父组件data里的属性，就完成了传参。</p>
+<li><p>使用$emit触发事件传递数据<br>1、当子组件的方法被调用时，子组件通过this.$emit(‘自定义事件名称’,this.子组件data中的属性)触发自定义事件<br>2、父组件在子组件HTML标签里直接用 v-on 来监听自定义事件的触发，进而触发父组件自己的事件<br>3、在父组件自己的事件中，定义时传入一个参数，这个参数赋值给父组件data里的属性，就完成了传参。</p>
 </li>
 </ul>
 <h3 id="使用路由"><a href="#使用路由" class="headerlink" title="使用路由"></a>使用路由</h3><p>this.$router.push({name: ‘showMode’,params:{ id: 44,readonly:0}});</p>
-<h3 id="使用HTML5的web存储"><a href="#使用HTML5的web存储" class="headerlink" title="使用HTML5的web存储"></a>使用HTML5的web存储</h3><h2 id="数组或对象的更新检测问题"><a href="#数组或对象的更新检测问题" class="headerlink" title="数组或对象的更新检测问题"></a>数组或对象的更新检测问题</h2><p>对于数组，受JS限制，Vue不能检测data之外数组的以下变动：</p>
+<h3 id="使用HTML5的web存储"><a href="#使用HTML5的web存储" class="headerlink" title="使用HTML5的web存储"></a>使用HTML5的web存储</h3><p>详见<a href="https://huaz224.github.io/2017/09/23/%E5%95%86%E5%93%81%E6%88%BF%E7%BD%91%E7%AD%BE%E7%BD%91%E5%A4%87%E7%B3%BB%E7%BB%9F-%E6%80%BB%E7%BB%93Part2%EF%BC%88HTML5%EF%BC%89/#more" target="_blank" rel="external">本系列总结第二部分-HTML5的web存储</a></p>
+<h2 id="数组或对象的更新检测问题"><a href="#数组或对象的更新检测问题" class="headerlink" title="数组或对象的更新检测问题"></a>数组或对象的更新检测问题</h2><p>对于数组，受JS限制，Vue不能检测data之外数组的以下变动：</p>
 <ul>
 <li>当你利用索引直接更改一个项时，arr[index] = newValue;</li>
 <li>当修改数组的长度时，arr.length = newLength;</li>

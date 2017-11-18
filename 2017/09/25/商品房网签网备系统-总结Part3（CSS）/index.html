@@ -83,7 +83,7 @@
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/viewport.jpg">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/common.png">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/meta.png">
-<meta property="og:updated_time" content="2017-11-17T15:40:21.008Z">
+<meta property="og:updated_time" content="2017-11-18T04:17:06.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part3（CSS）">
 <meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport等。">
@@ -378,13 +378,13 @@
 <li>底层是布局viewport，页面渲染在底层。<br>通过document.documentElement.clientWidth获取（IE则是document.body.clientWidth）</li>
 <li>顶层是可视viewport，通过缩放来控制可视区域<br>通过window.innerWidth（IE通过document.documentElement.clientWidth）</li>
 </ul>
-<p>由上图可以看到，PC端的页面默认填充的是布局viewport，它的宽度可能远远大于手机屏幕。我们在课时viewport中看到的仅仅是整个页面的一部分内容，需要滑动横向滚动条才可以看到全部页面。<br>那么，我们怎样让布局viewport的宽度 = 课时viewport的宽度即屏幕宽度呢？？？请看下一小节</p>
+<p>由上图可以看到，PC端的页面默认填充的是布局viewport，它的宽度可能远远大于手机屏幕。我们在可视viewport中看到的仅仅是整个页面的一部分内容，需要滑动横向滚动条才可以看到全部页面。<br>那么，我们怎样让布局viewport的宽度 = 可视viewport的宽度即屏幕宽度呢？？？请看下一小节</p>
 <h2 id="meta标签"><a href="#meta标签" class="headerlink" title="meta标签"></a>meta标签</h2><p>在HTML的head标签中加入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot; /&gt;</div></pre></td></tr></table></figure></p>
 <p>该meta标签的作用是：让当前viewport的宽度（默认布局viewport）等于device-width。<br>其中，width可以取定值，也可以=device-width，一般为了兼容更多设备，让布局viewport=device-width。<br>device-width又是什么鬼捏？？？<br>大多数情况下为设备自己的宽度，可以用window.innerWidth来获取，iOS, android基本上默认都是980px。</p>
-<p>设置initial-scale=1后，课时viewport=布局viewport</p>
+<p>设置initial-scale=1后，可视viewport=布局viewport</p>
 <p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">body &#123;</div><div class="line">    margin: 0;</div><div class="line">&#125;</div><div class="line">.test &#123;</div><div class="line">    width: 320px;</div><div class="line">    height: 568px;</div><div class="line">    background-color: pink;</div><div class="line">    color: #fff;</div><div class="line">    font-size: 60px;</div><div class="line">    text-align: center;</div><div class="line">    line-height: 568px;</div><div class="line">    font-family: cursive;</div><div class="line">&#125;</div><div class="line">//html</div><div class="line">&lt;div class=&quot;test&quot;&gt;320*568&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>没有加meta标签时，效果见图<br><img src="/img/商品房网签网备系统/common.png" alt=""><br>添加meta标签后，效果见图<br><img src="/img/商品房网签网备系统/meta.png" alt="">　</p>
-<p>移动web最佳viewport配置：<br>布局viewport = 设备宽度 = 课时viewport</p>
+<p>移动web最佳viewport配置：<br>布局viewport = 设备宽度 = 可视viewport</p>
 
       
     </div>
