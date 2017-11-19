@@ -69,13 +69,13 @@
 
 
 
-<meta name="description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、百分比高度的使用等。">
+<meta name="description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、100%高度的使用等。">
 <meta name="keywords" content="商品房网签网备系统,CSS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="商品房网签网备系统-总结Part3（CSS）">
 <meta property="og:url" content="http://yoursite.com/2017/09/25/商品房网签网备系统-总结Part3（CSS）/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
-<meta property="og:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、百分比高度的使用等。">
+<meta property="og:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、100%高度的使用等。">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/class.jpg">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/pixel.jpg">
@@ -83,10 +83,10 @@
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/viewport.jpg">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/common.png">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/meta.png">
-<meta property="og:updated_time" content="2017-11-18T13:15:42.005Z">
+<meta property="og:updated_time" content="2017-11-18T15:18:09.706Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part3（CSS）">
-<meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、百分比高度的使用等。">
+<meta name="twitter:description" content="本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、100%高度的使用等。">
 <meta name="twitter:image" content="http://yoursite.com/img/商品房网签网备系统/class.jpg">
 
 
@@ -329,7 +329,7 @@
       
 
       
-        <p>本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、百分比高度的使用等。<br><a id="more"></a></p>
+        <p>本篇是商品房网签网备系统-总结的第三部分：CSS，内容比较零散，包括CSS优先级、媒体查询、viewport、100%高度的使用等。<br><a id="more"></a></p>
 <h1 id="CSS优先级"><a href="#CSS优先级" class="headerlink" title="CSS优先级"></a>CSS优先级</h1><ul>
 <li>不同级别的<br>!important &gt; 内联样式表（标签内部）&gt; 嵌入样式表（当前文件中）&gt; 外部样式表（外部文件中）。</li>
 <li>同一级别的<br>按照权值进行计算，规则如下：<br>!important最高 &gt; id = 100 &gt; class = 10 &gt; 标签 = 1 &gt; 继承 = 0.1</li>
@@ -385,9 +385,9 @@
 <p>栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">//css</div><div class="line">body &#123;</div><div class="line">    margin: 0;</div><div class="line">&#125;</div><div class="line">.test &#123;</div><div class="line">    width: 320px;</div><div class="line">    height: 568px;</div><div class="line">    background-color: pink;</div><div class="line">    color: #fff;</div><div class="line">    font-size: 60px;</div><div class="line">    text-align: center;</div><div class="line">    line-height: 568px;</div><div class="line">    font-family: cursive;</div><div class="line">&#125;</div><div class="line">//html</div><div class="line">&lt;div class=&quot;test&quot;&gt;320*568&lt;/div&gt;</div></pre></td></tr></table></figure></p>
 <p>没有加meta标签时，效果见图<br><img src="/img/商品房网签网备系统/common.png" alt=""><br>添加meta标签后，效果见图<br><img src="/img/商品房网签网备系统/meta.png" alt="">　</p>
 <p>移动web最佳viewport配置：<br>布局viewport = 设备宽度 = 可视viewport</p>
-<h2 id="height-100-的使用"><a href="#height-100-的使用" class="headerlink" title="height: 100%;的使用"></a>height: 100%;的使用</h2><p>使用height: 100%;时需要注意的一些事项</p>
+<h1 id="height-100-的使用"><a href="#height-100-的使用" class="headerlink" title="height: 100%;的使用"></a>height: 100%;的使用</h1><p>使用height: 100%;时需要注意的一些事项</p>
 <ul>
-<li><p>height: 100%;继承的是父容器高度的100%，所以向上的所有父容器都需要百分比继承，最顶层父容器（html页）需要定高，一般设置</p>
+<li><p>使用height: 100%;的元素，继承的是父容器高度的100%，所以向上的所有父容器都需要百分比继承，最顶层父容器（html页）需要定高，一般设置</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">html,</div><div class="line">body &#123;</div><div class="line">    height: 100%;</div><div class="line">    margin: 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 <li><p>margin 和 padding 会让你的页面出现滚动条，可用透明border来解决这个问题</p>
@@ -582,7 +582,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS优先级"><span class="nav-number">1.</span> <span class="nav-text">CSS优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-media"><span class="nav-number">2.</span> <span class="nav-text">媒体查询@media</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">2.2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打印页面"><span class="nav-number">2.2.1.</span> <span class="nav-text">打印页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式页面"><span class="nav-number">2.2.2.</span> <span class="nav-text">响应式页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport"><span class="nav-number">3.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些单位和概念"><span class="nav-number">3.1.</span> <span class="nav-text">一些单位和概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport-1"><span class="nav-number">3.2.</span> <span class="nav-text">viewport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta标签"><span class="nav-number">3.3.</span> <span class="nav-text">meta标签</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#height-100-的使用"><span class="nav-number">3.4.</span> <span class="nav-text">height: 100%;的使用</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CSS优先级"><span class="nav-number">1.</span> <span class="nav-text">CSS优先级</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#媒体查询-media"><span class="nav-number">2.</span> <span class="nav-text">媒体查询@media</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#语法"><span class="nav-number">2.1.</span> <span class="nav-text">语法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#应用"><span class="nav-number">2.2.</span> <span class="nav-text">应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#打印页面"><span class="nav-number">2.2.1.</span> <span class="nav-text">打印页面</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应式页面"><span class="nav-number">2.2.2.</span> <span class="nav-text">响应式页面</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#viewport"><span class="nav-number">3.</span> <span class="nav-text">viewport</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一些单位和概念"><span class="nav-number">3.1.</span> <span class="nav-text">一些单位和概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#viewport-1"><span class="nav-number">3.2.</span> <span class="nav-text">viewport</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#meta标签"><span class="nav-number">3.3.</span> <span class="nav-text">meta标签</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#height-100-的使用"><span class="nav-number">4.</span> <span class="nav-text">height: 100%;的使用</span></a></li></ol></div>
             
 
           </div>
