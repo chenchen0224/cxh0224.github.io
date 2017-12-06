@@ -78,7 +78,7 @@
 <meta property="og:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/data.jpg">
-<meta property="og:updated_time" content="2017-11-19T04:01:49.441Z">
+<meta property="og:updated_time" content="2017-12-03T01:18:55.108Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part1（Vue.js）">
 <meta name="twitter:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
@@ -339,15 +339,12 @@
 <p>小贴士：如果卸载重新安装，傻瓜式卸载后还需删除C:\Users\CXH\AppData\Roaming目录下的npm和npm-cache两个文件夹。（因为这个被折腾好久哦）</p>
 </blockquote>
 <h2 id="安装vue-cli"><a href="#安装vue-cli" class="headerlink" title="安装vue-cli"></a>安装vue-cli</h2><p>在命令行输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g vue-cli</div></pre></td></tr></table></figure></p>
-<blockquote>
-<p>小贴士：如果你安装了Git，右键git bash打开黑窗口，所有的命令都可以直接输入，不用再cmd、cd啦。</p>
-</blockquote>
-<p>安装完成后，可以在命令行窗口中输入vue -v，如果能显示出版本号，就说明安装成功。如果安装失败，先清理缓存再重新安装。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm cache clean</div></pre></td></tr></table></figure></p>
 <h2 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h2><p>新项目是基于webpack模板创建的。通过命令行窗口cd进入即将要新建项目的目录，然后输入<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">vue init webpack my-project</div></pre></td></tr></table></figure></p>
 <p>执行后，按照提示手动输入项目名称、描述、作者、打包方式、是否安装vue-router（yes，这个用的很多哦）、是否使用ESLint检查代码（no）、是否建立单元测试（no）等内容后，会在当前目录生成一个my-project的项目文件夹。<br>接下来，cd进入刚才新建的项目文件夹，安装依赖<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install</div></pre></td></tr></table></figure></p>
 <p>安装完成后，启动项目</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm run dev</div></pre></td></tr></table></figure>
 <blockquote>
+<p>小贴士：如果你安装了Git，右键git bash打开黑窗口，所有的命令都可以直接输入，不用再cmd、cd啦。</p>
 <p>小贴士：启动已有项目只要npm install–&gt;npm run dev两步就OK辣，依赖只是在第一次启动时需要install。</p>
 </blockquote>
 <p>这时会自动启动chrome，并跳转到localhost:8080页面（因为CLI带有热重载，Ctrl+S后会自动更新到浏览器辣）。</p>
@@ -372,11 +369,16 @@
 <thead>
 <tr>
 <th>目录名</th>
-<th>子目录</th>
+<th>子目录/子文件</th>
 <th>描述</th>
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>bulid文件夹</td>
+<td>dev-server.js为开发的webpack打包的入口文件</td>
+<td></td>
+</tr>
 <tr>
 <td>config文件夹</td>
 <td>index.js</td>
@@ -400,7 +402,7 @@
 <tr>
 <td></td>
 <td>App.vue</td>
-<td>默认根组件，可以理解为其他所有组件的父组件</td>
+<td>默认根组件，也就是其他所有组件的父组件，可以把整个页面看成是一个Vue的大组件</td>
 </tr>
 <tr>
 <td></td>
@@ -413,14 +415,18 @@
 <td></td>
 </tr>
 <tr>
+<td>.babelrc</td>
+<td>配置babel ，将Vue中的ES6语法编译为ES5</td>
+<td></td>
+</tr>
+<tr>
 <td>index.html</td>
 <td>入口页面</td>
-<td>&nbsp;</td>
+<td></td>
 </tr>
 <tr>
 <td>package.json</td>
-<td>项目配置文件</td>
-<td>&nbsp;</td>
+<td>项目配置文件，包含项目描述信息、项目生产环境和开发环境所需的依赖</td>
 </tr>
 </tbody>
 </table>
