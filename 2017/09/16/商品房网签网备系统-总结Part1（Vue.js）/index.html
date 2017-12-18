@@ -78,7 +78,7 @@
 <meta property="og:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://yoursite.com/img/商品房网签网备系统/data.jpg">
-<meta property="og:updated_time" content="2017-12-03T01:18:55.108Z">
+<meta property="og:updated_time" content="2017-12-09T05:42:00.071Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="商品房网签网备系统-总结Part1（Vue.js）">
 <meta name="twitter:description" content="从八月份到现在的一个月里，收货非常的大：我和公司的一个前端小姐姐（江湖称号：叁哥）一起完成了商品房网签网备系统的雏形，作为演示demo得到了领导的认可。在此要特别感谢叁哥，之前连Vue是什么都不知道，是她带着我入门的，人生难遇领路人呢~^o^~。本项目是我学习前端以来第一个完整的实战项目，要求做PC端和移动端APP。前端使用Vue全家桶（vue + vuex + vue router + vue">
@@ -353,15 +353,15 @@
 <ul>
 <li><p>vue-router，用于配置路由<br>输入以下命令进行安装，（新建项目时安装了vue-router略过此处）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-router --save</div></pre></td></tr></table></figure>
-<p>  具体的使用请戳☛☛☛<a href="https://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router</a></p>
+<p>  具体的使用请戳官方文档☛☛☛<a href="https://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router</a></p>
 </li>
 <li><p>vue-resource，处理HTTP请求，与服务端通信<br>输入以下命令进行安装，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vue-resource --save</div></pre></td></tr></table></figure>
-<p>  具体的使用请戳☛☛☛<a href="http://www.jianshu.com/p/3ce2bd36596e" target="_blank" rel="external">一起玩转Vue-resource</a></p>
+<p>  具体的使用请戳官方文档☛☛☛<a href="https://www.npmjs.com/package/vue-resource" target="_blank" rel="external">vue-resource</a></p>
 </li>
 <li><p>vuex，全局状态管理，其实就是一个存数据的<br>输入以下命令进行安装，</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install vuex --save-dev</div></pre></td></tr></table></figure>
-<p>  具体的使用请戳☛☛☛<a href="https://vuex.vuejs.org/zh-cn/" target="_blank" rel="external">Vuex</a></p>
+<p>  具体的使用请戳官方文档☛☛☛<a href="https://vuex.vuejs.org/zh-cn/" target="_blank" rel="external">Vuex</a></p>
 </li>
 </ul>
 <h1 id="入门介绍"><a href="#入门介绍" class="headerlink" title="入门介绍"></a>入门介绍</h1><h2 id="项目结构"><a href="#项目结构" class="headerlink" title="项目结构"></a>项目结构</h2><p>项目的目录结构如图所示。我们需要关注的是config目录、src目录、static目录和index.html。</p>
@@ -513,7 +513,7 @@
 <p>将项目打包，打包成功后会生成dist文件夹，这个文件夹里的文件就是最终的成果，它部署到服务器上就OK辣。</p>
 <h1 id="遇到的问题"><a href="#遇到的问题" class="headerlink" title="遇到的问题"></a>遇到的问题</h1><h2 id="组件之间传参的几种方式"><a href="#组件之间传参的几种方式" class="headerlink" title="组件之间传参的几种方式"></a>组件之间传参的几种方式</h2><h3 id="props-down-events-up"><a href="#props-down-events-up" class="headerlink" title="props down, events up"></a>props down, events up</h3><p>在 Vue 中，父子组件的关系可以总结为 props down, events up。父组件通过 props 向下传递数据给子组件，子组件通过 events 给父组件发送消息。</p>
 <ul>
-<li><p>props<br>父组件向子组件传数据时，可以在父组件的HTML标签添加中间属性（注意是v-band:中间属性=’data里的属性名’），然后子组件中使用props注册该中间属性（注意：props:[‘xxx’]加引号）后，即可在子组件中使用来自父组件的数据</p>
+<li><p>props<br>父组件向子组件传数据时，可以在父组件的HTML标签添加中间属性（注意是v-band:中间属性=’data里的属性名’），然后子组件中使用props注册该中间属性（注意：props:[‘xxx’]加引号，注册位置与data并列）后，即可在子组件中使用来自父组件的数据</p>
 </li>
 <li><p>使用$emit触发事件传递数据</p>
 <ul>
@@ -553,6 +553,7 @@
 <li><a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="external">vue.js</a></li>
 <li><a href="https://router.vuejs.org/zh-cn/index.html" target="_blank" rel="external">vue-router</a></li>
 <li><a href="https://vuex.vuejs.org/zh-cn/" target="_blank" rel="external">Vuex</a></li>
+<li><a href="https://www.npmjs.com/package/vue-resource" target="_blank" rel="external">vue-resource</a></li>
 <li><a href="http://www.jianshu.com/p/3ce2bd36596e" target="_blank" rel="external">一起玩转Vue-resource</a></li>
 <li><a href="http://www.jianshu.com/p/4643a8e43b79" target="_blank" rel="external">npm使用入门</a></li>
 <li><a href="http://element.eleme.io/#/zh-CN" target="_blank" rel="external">Element - 网站快速成型工具</a></li>

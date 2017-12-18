@@ -69,18 +69,18 @@
 
 
 
-<meta name="description" content="本篇是深入理解JS系列的Part2：原型和继承。参考书籍：《JavaScript高级程序设计（第3版）》《你不知道的JavaScript》">
+<meta name="description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
 <meta name="keywords" content="JavaScript,深入理解JS">
 <meta property="og:type" content="article">
-<meta property="og:title" content="深入理解JS系列-Part2（原型和继承）">
-<meta property="og:url" content="http://yoursite.com/2017/10/29/深入理解JS系列-Part2（原型和继承）/index.html">
+<meta property="og:title" content="深入理解JS系列-Part3（原型和继承）">
+<meta property="og:url" content="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
-<meta property="og:description" content="本篇是深入理解JS系列的Part2：原型和继承。参考书籍：《JavaScript高级程序设计（第3版）》《你不知道的JavaScript》">
+<meta property="og:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-11-26T14:30:07.833Z">
+<meta property="og:updated_time" content="2017-12-18T14:38:05.646Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="深入理解JS系列-Part2（原型和继承）">
-<meta name="twitter:description" content="本篇是深入理解JS系列的Part2：原型和继承。参考书籍：《JavaScript高级程序设计（第3版）》《你不知道的JavaScript》">
+<meta name="twitter:title" content="深入理解JS系列-Part3（原型和继承）">
+<meta name="twitter:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
 
 
 
@@ -110,13 +110,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part2（原型和继承）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/"/>
 
 
 
 
 
-  <title>深入理解JS系列-Part2（原型和继承） | 风到这里就是粘</title>
+  <title>深入理解JS系列-Part3（原型和继承） | 风到这里就是粘</title>
   
 
 
@@ -233,7 +233,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part2（原型和继承）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HuaZ">
@@ -250,7 +250,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">深入理解JS系列-Part2（原型和继承）</h1>
+          <h1 class="post-title" itemprop="name headline">深入理解JS系列-Part3（原型和继承）</h1>
         
 
         <div class="post-meta">
@@ -322,7 +322,35 @@
       
 
       
-        <p>本篇是<strong><em>深入理解JS系列</em></strong>的Part2：原型和继承。<br>参考书籍：《JavaScript高级程序设计（第3版）》《你不知道的JavaScript》<br><a id="more"></a></p>
+        <p>本篇是<strong><em>深入理解JS系列 </em></strong>的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。<br>原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。</p>
+<p>参考书籍：《JavaScript高级程序设计（第3版）》<br><a id="more"></a></p>
+<h1 id="理解原型对象"><a href="#理解原型对象" class="headerlink" title="理解原型对象"></a>理解原型对象</h1><h2 id="当我们定义了一个函数时"><a href="#当我们定义了一个函数时" class="headerlink" title="当我们定义了一个函数时"></a>当我们定义了一个函数时</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<ul>
+<li>自动为该函数创建一个<strong><em>prototype属性</em></strong>，这个属性是一个指针，指向该函数的<strong><em>原型对象 </em></strong>。</li>
+<li>默认的，所有的原型对象都会自动获得一个<strong><em>constructor（构造函数）属性 </em></strong>，这个属性又指回该函数。</li>
+</ul>
+<blockquote>
+<p>注意：Person函数其实就是一个普通的函数，只是通过new关键字来调用可以创建一个对象。所谓构造函数其实就是<strong><em>以构造对象的形式</em></strong>来调用的<strong><em>普通函数 </em></strong>。</p>
+</blockquote>
+<h2 id="然后，用new来调用Person函数，创建了一个对象"><a href="#然后，用new来调用Person函数，创建了一个对象" class="headerlink" title="然后，用new来调用Person函数，创建了一个对象"></a>然后，用new来调用Person函数，创建了一个对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">var person1 = new Person();</div></pre></td></tr></table></figure>
+<p>实际上会经历以下四个步骤：<br>1）创建一个新对象<br>2）将这个新对象赋给this<br>3）为这个新对象添加属性<br>4）返回这个新对象<br>这里需要注意以下两点：</p>
+<ul>
+<li>创建的对象实例内部自动获得一个指针（内部属性[[prototype]]，_proto_ 可访问），指向该函数的原型对象。</li>
+</ul>
+<h2 id="形成了一条原型链"><a href="#形成了一条原型链" class="headerlink" title="形成了一条原型链"></a>形成了一条原型链</h2><p>在上面的栗子中，我们展示了函数Person和它的原型对象Person.prototype的关系，这节我们顺着Person的原型对象向上讲。我们注意到，Person的原型对象是Object的一个实例！而Object.prototype的原型为null。<br>整个原型链如下：<br>person1 —&gt; Person.prototype —&gt; Object.prototype —&gt; null</p>
+<h1 id="基于原型链的继承"><a href="#基于原型链的继承" class="headerlink" title="基于原型链的继承"></a>基于原型链的继承</h1><p>JavaScript中只有对象，没有类！！！基于原型链的继承相对于传统OO语言的类继承更为简单：一个对象可以继承定义在其他对象中的属性和方法。</p>
+<p>每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。</p>
+<h2 id="屏蔽"><a href="#屏蔽" class="headerlink" title="屏蔽"></a>屏蔽</h2><h2 id="重写原型对象"><a href="#重写原型对象" class="headerlink" title="重写原型对象"></a>重写原型对象</h2><p>原型链中的方法和属性没有被复制到其他对象——它们被访问需要通过前面所说的“原型链”的方式。</p>
+<p>参考书籍：</p>
+<ul>
+<li>《JavaScript高级程序设计（第3版）》第6章</li>
+<li>《你不知道的JavaScript（上卷）》第二部分 第5章</li>
+</ul>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="external">MDN:对象原型</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN:继承与原型链</a></li>
+</ul>
 
       
     </div>
@@ -415,8 +443,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           
             <img class="site-author-image" itemprop="image"
@@ -489,6 +526,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解原型对象"><span class="nav-number">1.</span> <span class="nav-text">理解原型对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当我们定义了一个函数时"><span class="nav-number">1.1.</span> <span class="nav-text">当我们定义了一个函数时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后，用new来调用Person函数，创建了一个对象"><span class="nav-number">1.2.</span> <span class="nav-text">然后，用new来调用Person函数，创建了一个对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#形成了一条原型链"><span class="nav-number">1.3.</span> <span class="nav-text">形成了一条原型链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于原型链的继承"><span class="nav-number">2.</span> <span class="nav-text">基于原型链的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#屏蔽"><span class="nav-number">2.1.</span> <span class="nav-text">屏蔽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写原型对象"><span class="nav-number">2.2.</span> <span class="nav-text">重写原型对象</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
