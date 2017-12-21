@@ -77,10 +77,19 @@
 <meta property="og:site_name" content="风到这里就是粘">
 <meta property="og:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2017-12-18T14:38:05.646Z">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/func.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/obj.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/add1.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/add2.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/rewrite.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/constructor.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/chain.jpg">
+<meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/BnewA.jpg">
+<meta property="og:updated_time" content="2017-12-21T16:01:51.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JS系列-Part3（原型和继承）">
 <meta name="twitter:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
+<meta name="twitter:image" content="http://yoursite.com/img/深入理解JS系列/func.jpg">
 
 
 
@@ -324,32 +333,76 @@
       
         <p>本篇是<strong><em>深入理解JS系列 </em></strong>的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。<br>原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。</p>
 <p>参考书籍：《JavaScript高级程序设计（第3版）》<br><a id="more"></a></p>
-<h1 id="理解原型对象"><a href="#理解原型对象" class="headerlink" title="理解原型对象"></a>理解原型对象</h1><h2 id="当我们定义了一个函数时"><a href="#当我们定义了一个函数时" class="headerlink" title="当我们定义了一个函数时"></a>当我们定义了一个函数时</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="理解原型对象"><a href="#理解原型对象" class="headerlink" title="理解原型对象"></a>理解原型对象</h1><h2 id="当我们定义了一个函数之后"><a href="#当我们定义了一个函数之后" class="headerlink" title="当我们定义了一个函数之后"></a>当我们定义了一个函数之后</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>我们创建了一个Person函数，看看发生了什么</p>
 <ul>
 <li>自动为该函数创建一个<strong><em>prototype属性</em></strong>，这个属性是一个指针，指向该函数的<strong><em>原型对象 </em></strong>。</li>
 <li>默认的，所有的原型对象都会自动获得一个<strong><em>constructor（构造函数）属性 </em></strong>，这个属性又指回该函数。</li>
 </ul>
+<p>用图表示就是：<br><img src="/img/深入理解JS系列/func.jpg" alt=""></p>
+<p>用代码来表示就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">typeof (Person.prototype) === &quot;object&quot;;// true</div><div class="line">Person.prototype.constructor === Person;// true</div></pre></td></tr></table></figure></p>
 <blockquote>
-<p>注意：Person函数其实就是一个普通的函数，只是通过new关键字来调用可以创建一个对象。所谓构造函数其实就是<strong><em>以构造对象的形式</em></strong>来调用的<strong><em>普通函数 </em></strong>。</p>
+<p>注意：Person函数其实就是一个普通的函数，只是通过new关键字来调用可以创建一个对象。所谓构造函数其实就是<strong><em>以构造对象的形式 </em></strong>来调用的<strong><em>普通函数 </em></strong>。</p>
 </blockquote>
-<h2 id="然后，用new来调用Person函数，创建了一个对象"><a href="#然后，用new来调用Person函数，创建了一个对象" class="headerlink" title="然后，用new来调用Person函数，创建了一个对象"></a>然后，用new来调用Person函数，创建了一个对象</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function Person() &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">var person1 = new Person();</div></pre></td></tr></table></figure>
-<p>实际上会经历以下四个步骤：<br>1）创建一个新对象<br>2）将这个新对象赋给this<br>3）为这个新对象添加属性<br>4）返回这个新对象<br>这里需要注意以下两点：</p>
-<ul>
-<li>创建的对象实例内部自动获得一个指针（内部属性[[prototype]]，_proto_ 可访问），指向该函数的原型对象。</li>
+<h2 id="然后，用new来调用函数，创建了一个对象"><a href="#然后，用new来调用函数，创建了一个对象" class="headerlink" title="然后，用new来调用函数，创建了一个对象"></a>然后，用new来调用函数，创建了一个对象</h2><p>我们用new来构造调用了Person，创建了一个对象person1<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">var person1 = new Person(&quot;hua&quot;);</div></pre></td></tr></table></figure></p>
+<p>实际上会经历以下四个步骤：<br>1）创建一个新对象<br>2）将这个新对象绑定到this<br>3）这个新对象会直接复制一份Person中定义的属性保存到自身<br>4）返回这个新对象<br>这里需要注意的是：创建的新对象实例会自动获得一个<strong><em>隐藏属性[[prototype]]</em></strong>，这个属性指向Person的原型对象。[[prototype]]是一个<strong><em>内部属性 ，不可访问，</em></strong>但多数浏览器都<strong><em>支持访问__proto__属性</em></strong>（是两个下划线哦！！！）<br>用代码表示就是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">person1.__proto__; // &#123;constructor:ƒ Person(name)&#125;</div><div class="line">person1.__proto__ === Person.prototype; // true</div></pre></td></tr></table></figure></p>
+<p>用图表示就是：<br><img src="/img/深入理解JS系列/obj.jpg" alt=""></p>
+<h2 id="为原型对象添加方法"><a href="#为原型对象添加方法" class="headerlink" title="为原型对象添加方法"></a>为原型对象添加方法</h2><ul>
+<li>如果我们在构造函数Person中添加方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">    this.sayName = function() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;;</div><div class="line">&#125;</div><div class="line">var person1 = new Person(&quot;hua&quot;);</div><div class="line">person1.sayName();// hua</div><div class="line">var person2 = new Person(&quot;san&quot;);</div><div class="line">person2.sayName();// san</div></pre></td></tr></table></figure>
+</li>
 </ul>
-<h2 id="形成了一条原型链"><a href="#形成了一条原型链" class="headerlink" title="形成了一条原型链"></a>形成了一条原型链</h2><p>在上面的栗子中，我们展示了函数Person和它的原型对象Person.prototype的关系，这节我们顺着Person的原型对象向上讲。我们注意到，Person的原型对象是Object的一个实例！而Object.prototype的原型为null。<br>整个原型链如下：<br>person1 —&gt; Person.prototype —&gt; Object.prototype —&gt; null</p>
-<h1 id="基于原型链的继承"><a href="#基于原型链的继承" class="headerlink" title="基于原型链的继承"></a>基于原型链的继承</h1><p>JavaScript中只有对象，没有类！！！基于原型链的继承相对于传统OO语言的类继承更为简单：一个对象可以继承定义在其他对象中的属性和方法。</p>
-<p>每个对象拥有一个原型对象，对象以其原型为模板、从原型继承方法和属性。原型对象也可能拥有原型，并从中继承方法和属性，一层一层、以此类推。这种关系常被称为原型链，它解释了为何一个对象会拥有定义在其他对象中的属性和方法。</p>
-<h2 id="屏蔽"><a href="#屏蔽" class="headerlink" title="屏蔽"></a>屏蔽</h2><h2 id="重写原型对象"><a href="#重写原型对象" class="headerlink" title="重写原型对象"></a>重写原型对象</h2><p>原型链中的方法和属性没有被复制到其他对象——它们被访问需要通过前面所说的“原型链”的方式。</p>
-<p>参考书籍：</p>
+<p>以上代码用图表示就是：<br><img src="/img/深入理解JS系列/add1.jpg" alt=""><br>在构造函数中添加方法的主要问题就是：person1和person2中都有一个sayName()的方法，但这两个方法<strong><em>并不是同一个Function的实例 </em></strong>，因为函数也是对象，每创建一个实例，就会实例化一个函数对象。<br>可以用以下代码来证明：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">person1.sayName === person2.sayName;// false</div></pre></td></tr></table></figure>
+<p>这样的话，并不能做到函数的复用，况且有this存在，所有的实例完全可以共享一个sayName()方法，重复定义会造成内存的浪费。</p>
+<ul>
+<li>如果直接在Person的原型对象中添加方法<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Person.prototype.sayName = function() &#123;</div><div class="line">    console.log(this.name);</div><div class="line">&#125;;</div><div class="line">var person1 = new Person(&quot;hua&quot;);</div><div class="line">person1.sayName();// hua</div><div class="line">var person2 = new Person(&quot;san&quot;);</div><div class="line">person2.sayName();// san</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>以上代码用图表示就是：<br><img src="/img/深入理解JS系列/add2.jpg" alt=""><br>这里需要注意的是：</p>
+<ul>
+<li>在Person函数中定义的属性和方法都是<strong><em>实例属性 </em></strong>，对象实例可以<strong><em>直接复制 </em></strong>，获得的是这些实例属性的<strong><em>一个副本 </em></strong></li>
+<li>而在原型对象中定义的属性和方法是<strong><em>所有实例共享的</em></strong>，对象实例可以<strong><em>间接引用 </em></strong>，person1和person2中的sayName()方法<strong><em>是同一个Function的实例 </em></strong><br>可以用以下代码来证明：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">person1.sayName === person2.sayName;// true</div><div class="line">person1.name === person2.name;// false</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>因此，我们应该在构造函数中定义实例化的属性，在原型对象中定义方法和共享的属性，这样每个实例都会有自己的一份实例属性的副本，但同时又共享着对方法的引用。</em></strong></p>
+<h2 id="重写原型对象"><a href="#重写原型对象" class="headerlink" title="重写原型对象"></a>重写原型对象</h2><p>如果以对象字面量的语法来重写整个原型，代码示例如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function Person(name) &#123;</div><div class="line">    this.name = name;</div><div class="line">&#125;</div><div class="line">Person.prototype = &#123;</div><div class="line">    sayName: function() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;;</div><div class="line">var person1 = new Person(&quot;hua&quot;);</div><div class="line">person1.sayName();// hua</div></pre></td></tr></table></figure></p>
+<p>以上代码用图表示就是：<br><img src="/img/深入理解JS系列/rewrite.jpg" alt=""><br>我们会发现，将一个以对象字面量形式创建的新对象赋给Person.prototype后，虽然执行结果相同，但<strong><em>原型对象的constructor属性不再指向Person函数了</em></strong>，而是指向Object构造函数。<br>用代码证明如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Person.prototype.constructor === Person;// false</div><div class="line">Person.prototype.constructor === Object;// true</div></pre></td></tr></table></figure></p>
+<p>当constructor的指向很重要的时候，我们可以手动改变原型对象的constructor指向<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">Person.prototype = &#123;</div><div class="line">	constructor: Person,</div><div class="line">    sayName: function() &#123;</div><div class="line">        console.log(this.name);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>改变后，如图所示：<br><img src="/img/深入理解JS系列/constructor.jpg" alt=""><br>我们会发现，改变constructor的指向并没有影响原型链，这货到底有什么用处，目前真没发现。</p>
+<h1 id="原型链"><a href="#原型链" class="headerlink" title="原型链"></a>原型链</h1><p>在上面的栗子中，我们展示了实例person1和它的原型对象Person.prototype的关系，我们顺着Person的原型对象向上追溯，顶端到底指向什么呢？？？<br>我们注意到，Person的原型对象指向Object.prototype。它们之间<strong><em>通过属性[[prototype]]来连接 ，形成了一条原型链  </em></strong>，原型链的顶端为Object.prototype：<br>person1 - - - &gt; Person.prototype - - - &gt; Object.prototype<br>用图表示就是：<br><img src="/img/深入理解JS系列/chain.jpg" alt=""></p>
+<h2 id="基于原型链的搜索机制"><a href="#基于原型链的搜索机制" class="headerlink" title="基于原型链的搜索机制"></a>基于原型链的搜索机制</h2><p>当我们需要读取对象的某个属性时，会执行一次搜索操作，搜索首先从对象实例开始，如果在对象实例中没有找到该属性，就会沿着原型链继续向上搜索，找到了就立刻停止，否则会直至顶端。<strong>这就是基于原型链的搜索机制。</strong><br>比如，在上面的原型链中搜索person1.sayName()，会经历以下两个步骤：<br>1）搜索实例person1<br>2）搜索Person.prototype，找到了sayName()方法，搜索过程停止<br>这种搜索机制会产生一种<strong><em>屏蔽效应 </em></strong>：<br>当为对象实例添加一个属性时，这个属性就会屏蔽原型链上层的<strong><em>同名属性 </em></strong>。屏蔽只是一个阻止访问的操作，并没有修改原型链。</p>
+<h2 id="Object-prototype"><a href="#Object-prototype" class="headerlink" title="Object.prototype"></a>Object.prototype</h2><p>我们知道，在ECMAScript中，所有的对象都是Object的实例，因此所有的原型对象默认都会包含一个指针，指向Object.prototype。<br>所以，这也就是为什么我们没有定义hasOwnProperty()、toString()等方法，而创建的每个对象却都能调用它们的真正原因。<br>同样，所有的原生引用类型（Array、String等等）之所以可以调用很多种方法也是因为在它们的原型中定义了这些方法。</p>
+<h2 id="关于constructor属性的澄清"><a href="#关于constructor属性的澄清" class="headerlink" title="关于constructor属性的澄清"></a>关于constructor属性的澄清</h2><ul>
+<li><p>对象实例，自身是没有constructor属性的<br>person1是一个对象实例，自身是没有constructor属性的，之所以可以访问constructor属性，是因为向上搜索在它的原型Person.prototype中找到了constructor属性。<br>用代码证明如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">person1.constructor === Person;// true</div><div class="line">console.log(&quot;constructor&quot; in person1);// true</div><div class="line">console.log(person1.hasOwnProperty(&quot;constructor&quot;));// false</div></pre></td></tr></table></figure>
+</li>
+<li><p>原型对象被重写之后会丢失constructor属性<br>Person.prototype的constructor属性是在<strong><em>Person函数声明时的默认属性 </em></strong>，一旦以一个新的对象来重写了Person.prototype，那么这个<strong><em>新的对象是不会自动获得constructor属性 </em></strong>的。</p>
+</li>
+</ul>
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><p>JavaScript中只有对象，没有类！！！它的继承相对于传统OO语言的类继承更为简单：<strong><em>一个对象可以继承在另一个对象中定义的属性和方法。  </em></strong><br><strong><em>在上面的栗子中，其实沿着原型链就实现了继承。处于原型链底端的对象可以向上继承。</em></strong><br>但是，如果两个对象并不在一条原型链上，它们之间并无关联。那么，怎么实现这两个对象之间的继承呢？？？<br>核心思想就是：<strong><em>将一个对象的原型指定为要继承的这个对象的实例，从而将两个对象关联起来。本质是重写原型对象。</em></strong></p>
+<h2 id="使用构造函数"><a href="#使用构造函数" class="headerlink" title="使用构造函数"></a>使用构造函数</h2><p>我们知道，使用构造函数可以new出来一个对象实例，如果将该实例赋给另一个对象的原型，是不是就实现了继承了呢？？？答案是肯定的。<br>可能不太好理解，我们来看一个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">function A() &#123;</div><div class="line">    this.A = &quot;i am a&quot;;</div><div class="line">&#125;</div><div class="line">A.prototype.sayA = function() &#123;</div><div class="line">    console.log(this.A);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">function B() &#123;</div><div class="line">    this.B = &quot;i am b&quot;;</div><div class="line">&#125;</div><div class="line">B.prototype = new A();// 实现B继承自A</div><div class="line">B.prototype.sayB = function() &#123;</div><div class="line">    console.log(this.B);</div><div class="line">&#125;;</div><div class="line">var b1 = new B();</div><div class="line">b1.sayB();// i am b</div><div class="line">b1.sayA();// i am a</div></pre></td></tr></table></figure></p>
+<p>以上代码定义了两个类型：A和B，通过创建A的实例new A()，并将该实例赋给B的原型对象，实现了B继承自A。实现的本质是以一个类型A的实例重写了B的原型对象。<br>以上代码用图表示就是：<br><img src="/img/深入理解JS系列/BnewA.jpg" alt=""><br>这里有几点需要注意：</p>
+<ul>
+<li>B的实例b1具有一个实例属性B，可以访问三个原型链中的属性A、sayB、sayA。注意<strong><em>属性A（黄色）存在于B.prototype中  </em></strong>，这是因为属性A是实例属性，而B.prototype是函数A的一个实例。</li>
+<li><p><strong><em>B的原型对象被重写之后，丢失了constructor属性。</em></strong>b1.constructor访问的是A.prototype中的constructor属性。<br>用代码证明如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">b1.constructor.name === A;// true</div></pre></td></tr></table></figure>
+<p>如果constructor属性非常重要，可以手动指回。</p>
+</li>
+</ul>
+<h2 id="使用Object-create"><a href="#使用Object-create" class="headerlink" title="使用Object.create()"></a>使用Object.create()</h2><p>原型链连接的是对象和对象，与函数无关。那么我们是否能够绕开函数，而仅仅对两个对象之间建立关联关系呢？？？<br>ECMAScript5中引入了一个新方法：Object.create()，这个方法的第一个参数是一个用作原型对象的对象，返回一个新对象实例。我们来看这个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function create(o) &#123;</div><div class="line">    function F() &#123;&#125;</div><div class="line">    Foo.prototype = o;</div><div class="line">    return new F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在create内部，首先定义了一个空函数F，并将其原型指向参数o，o是一个原型对象，最后返回了函数F的一个实例。<strong><em>本质上，就是对给定的对象执行了一次浅复制。  </em></strong><br>这个函数可以用于：<strong><em>基于给定的对象来创建它的一个对象实例。</em></strong><br>我们来看下面这个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    A: &quot;i am a&quot;</div><div class="line">&#125;;</div><div class="line">var b = Object.create(a);</div><div class="line">console.log(b.A); // i am a</div></pre></td></tr></table></figure></p>
+<p>在上边这个栗子中，我们将对象a作为一个基础对象，传入到了Object.create()函数中，然后返回了一个对象b，它的原型是对象a。</p>
+<p>使用Object.create()所带来的问题：当给定的对象包含引用类型值的属性时，执行浅复制会只复制一个指针，这会<strong><em>导致该引用类型值的共享  </em></strong>。<br>我们来看一个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    color: [&apos;red&apos;, &apos;blue&apos;]</div><div class="line">&#125;;</div><div class="line">var b1 = Object.create(a);</div><div class="line">b1.color;// [&quot;red&quot;, &quot;blue&quot;]</div><div class="line">b1.color.push(&apos;pink&apos;);</div><div class="line"></div><div class="line">var b2 = Object.create(a);</div><div class="line">b2.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;]</div><div class="line">b1.color.push(&apos;yellow&apos;);</div><div class="line"></div><div class="line">a.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;, &quot;yellow&quot;]</div></pre></td></tr></table></figure></p>
+<p>我们注意到，a.color不仅属于对象a，而且还被b1和b2共享。修改三个对象中的任意一个对象的color，其他对象也都会改变。</p>
+<h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>哎呀，妈妈呀！我终于写完了！！！这是我最耗费经历的一篇博了，为了彻底理清原型和继承，我参考了很多的资料，花了很多的图，反复的看资料，反复的修改，真的不容易，好在收货了很多。学习芝士的心情贼好！！！<br>最后奉上参考的资料：<br>参考书籍：</p>
 <ul>
 <li>《JavaScript高级程序设计（第3版）》第6章</li>
 <li>《你不知道的JavaScript（上卷）》第二部分 第5章</li>
 </ul>
-<p>参考资料：</p>
+<p>参考文档：</p>
 <ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="external">MDN:对象原型</a></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN:继承与原型链</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="external">MDN：对象原型</a></li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN：继承与原型链</a></li>
 </ul>
 
       
@@ -392,6 +445,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/29/深入理解JS系列-Part2（this）/" rel="prev" title="深入理解JS系列-Part2（this）">
+                深入理解JS系列-Part2（this） <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -471,7 +528,7 @@
             
               <a href="/archives/">
             
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -536,7 +593,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解原型对象"><span class="nav-number">1.</span> <span class="nav-text">理解原型对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当我们定义了一个函数时"><span class="nav-number">1.1.</span> <span class="nav-text">当我们定义了一个函数时</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后，用new来调用Person函数，创建了一个对象"><span class="nav-number">1.2.</span> <span class="nav-text">然后，用new来调用Person函数，创建了一个对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#形成了一条原型链"><span class="nav-number">1.3.</span> <span class="nav-text">形成了一条原型链</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#基于原型链的继承"><span class="nav-number">2.</span> <span class="nav-text">基于原型链的继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#屏蔽"><span class="nav-number">2.1.</span> <span class="nav-text">屏蔽</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写原型对象"><span class="nav-number">2.2.</span> <span class="nav-text">重写原型对象</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#理解原型对象"><span class="nav-number">1.</span> <span class="nav-text">理解原型对象</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#当我们定义了一个函数之后"><span class="nav-number">1.1.</span> <span class="nav-text">当我们定义了一个函数之后</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#然后，用new来调用函数，创建了一个对象"><span class="nav-number">1.2.</span> <span class="nav-text">然后，用new来调用函数，创建了一个对象</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为原型对象添加方法"><span class="nav-number">1.3.</span> <span class="nav-text">为原型对象添加方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#重写原型对象"><span class="nav-number">1.4.</span> <span class="nav-text">重写原型对象</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#原型链"><span class="nav-number">2.</span> <span class="nav-text">原型链</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基于原型链的搜索机制"><span class="nav-number">2.1.</span> <span class="nav-text">基于原型链的搜索机制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Object-prototype"><span class="nav-number">2.2.</span> <span class="nav-text">Object.prototype</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关于constructor属性的澄清"><span class="nav-number">2.3.</span> <span class="nav-text">关于constructor属性的澄清</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#继承"><span class="nav-number">3.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用构造函数"><span class="nav-number">3.1.</span> <span class="nav-text">使用构造函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#使用Object-create"><span class="nav-number">3.2.</span> <span class="nav-text">使用Object.create()</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#最后想说"><span class="nav-number">4.</span> <span class="nav-text">最后想说</span></a></li></ol></div>
             
 
           </div>
