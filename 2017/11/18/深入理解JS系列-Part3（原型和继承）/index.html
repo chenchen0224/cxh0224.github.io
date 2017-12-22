@@ -73,7 +73,7 @@
 <meta name="keywords" content="JavaScript,深入理解JS">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深入理解JS系列-Part3（原型和继承）">
-<meta property="og:url" content="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/index.html">
+<meta property="og:url" content="http://yoursite.com/2017/11/18/深入理解JS系列-Part3（原型和继承）/index.html">
 <meta property="og:site_name" content="风到这里就是粘">
 <meta property="og:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
 <meta property="og:locale" content="zh-Hans">
@@ -85,7 +85,7 @@
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/constructor.jpg">
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/chain.jpg">
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/BnewA.jpg">
-<meta property="og:updated_time" content="2017-12-21T16:01:51.050Z">
+<meta property="og:updated_time" content="2017-12-22T13:33:24.998Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JS系列-Part3（原型和继承）">
 <meta name="twitter:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
@@ -119,7 +119,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/"/>
+  <link rel="canonical" href="http://yoursite.com/2017/11/18/深入理解JS系列-Part3（原型和继承）/"/>
 
 
 
@@ -242,7 +242,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/10/29/深入理解JS系列-Part3（原型和继承）/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/11/18/深入理解JS系列-Part3（原型和继承）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="HuaZ">
@@ -271,8 +271,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-29T11:52:29+08:00">
-                2017-10-29
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-18T11:52:29+08:00">
+                2017-11-18
               </time>
             
 
@@ -389,9 +389,10 @@
 <p>如果constructor属性非常重要，可以手动指回。</p>
 </li>
 </ul>
-<h2 id="使用Object-create"><a href="#使用Object-create" class="headerlink" title="使用Object.create()"></a>使用Object.create()</h2><p>原型链连接的是对象和对象，与函数无关。那么我们是否能够绕开函数，而仅仅对两个对象之间建立关联关系呢？？？<br>ECMAScript5中引入了一个新方法：Object.create()，这个方法的第一个参数是一个用作原型对象的对象，返回一个新对象实例。我们来看这个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function create(o) &#123;</div><div class="line">    function F() &#123;&#125;</div><div class="line">    Foo.prototype = o;</div><div class="line">    return new F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="使用Object-create"><a href="#使用Object-create" class="headerlink" title="使用Object.create()"></a>使用Object.create()</h2><p>我们知道，原型链连接的是对象和对象，与函数无关。那么我们是否能够绕开函数，而仅仅对两个对象之间建立关联关系呢？？？<br>ECMAScript5中引入了一个新方法：Object.create()，这个方法的第一个参数是一个用作原型对象的对象，返回一个新对象实例。我们来看这个函数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function create(o) &#123;</div><div class="line">    function F() &#123;&#125;</div><div class="line">    Foo.prototype = o;</div><div class="line">    return new F();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>在create内部，首先定义了一个空函数F，并将其原型指向参数o，o是一个原型对象，最后返回了函数F的一个实例。<strong><em>本质上，就是对给定的对象执行了一次浅复制。  </em></strong><br>这个函数可以用于：<strong><em>基于给定的对象来创建它的一个对象实例。</em></strong><br>我们来看下面这个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    A: &quot;i am a&quot;</div><div class="line">&#125;;</div><div class="line">var b = Object.create(a);</div><div class="line">console.log(b.A); // i am a</div></pre></td></tr></table></figure></p>
 <p>在上边这个栗子中，我们将对象a作为一个基础对象，传入到了Object.create()函数中，然后返回了一个对象b，它的原型是对象a。</p>
+<p>Object.create()适用于：不需要兴师动众的创建构造函数，而只是想<strong><em>保持两个对象类似 </em></strong>的情况。</p>
 <p>使用Object.create()所带来的问题：当给定的对象包含引用类型值的属性时，执行浅复制会只复制一个指针，这会<strong><em>导致该引用类型值的共享  </em></strong>。<br>我们来看一个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    color: [&apos;red&apos;, &apos;blue&apos;]</div><div class="line">&#125;;</div><div class="line">var b1 = Object.create(a);</div><div class="line">b1.color;// [&quot;red&quot;, &quot;blue&quot;]</div><div class="line">b1.color.push(&apos;pink&apos;);</div><div class="line"></div><div class="line">var b2 = Object.create(a);</div><div class="line">b2.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;]</div><div class="line">b1.color.push(&apos;yellow&apos;);</div><div class="line"></div><div class="line">a.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;, &quot;yellow&quot;]</div></pre></td></tr></table></figure></p>
 <p>我们注意到，a.color不仅属于对象a，而且还被b1和b2共享。修改三个对象中的任意一个对象的color，其他对象也都会改变。</p>
 <h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>哎呀，妈妈呀！我终于写完了！！！这是我最耗费经历的一篇博了，为了彻底理清原型和继承，我参考了很多的资料，花了很多的图，反复的看资料，反复的修改，真的不容易，好在收货了很多。学习芝士的心情贼好！！！<br>最后奉上参考的资料：<br>参考书籍：</p>
@@ -436,8 +437,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/10/15/深入理解JS系列-Part1（作用域和闭包）/" rel="next" title="深入理解JS系列-Part1（作用域和闭包）">
-                <i class="fa fa-chevron-left"></i> 深入理解JS系列-Part1（作用域和闭包）
+              <a href="/2017/10/29/深入理解JS系列-Part2（this）/" rel="next" title="深入理解JS系列-Part2（this）">
+                <i class="fa fa-chevron-left"></i> 深入理解JS系列-Part2（this）
               </a>
             
           </div>
@@ -445,10 +446,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2017/10/29/深入理解JS系列-Part2（this）/" rel="prev" title="深入理解JS系列-Part2（this）">
-                深入理解JS系列-Part2（this） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -518,7 +515,7 @@
               alt="HuaZ" />
           
             <p class="site-author-name" itemprop="name">HuaZ</p>
-            <p class="site-description motion-element" itemprop="description">淡然心性，浅笑相安。</p>
+            <p class="site-description motion-element" itemprop="description">从现在开始种一棵树</p>
         </div>
 
         <nav class="site-state motion-element">
