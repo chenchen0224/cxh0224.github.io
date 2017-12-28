@@ -85,7 +85,7 @@
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/constructor.jpg">
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/chain.jpg">
 <meta property="og:image" content="http://yoursite.com/img/深入理解JS系列/BnewA.jpg">
-<meta property="og:updated_time" content="2017-12-22T13:33:24.998Z">
+<meta property="og:updated_time" content="2017-12-28T14:59:21.809Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解JS系列-Part3（原型和继承）">
 <meta name="twitter:description" content="本篇是深入理解JS系列 的Part3，我们将要探讨的是JavaScript区别于传统OO语言的新的继承机制：原型和继承。JavaScript中没有类，继承是通过原型来实现的。ES6虽然引入了class关键字，但只是语法糖，JavaScript仍然是基于原型的。原型和继承是JavaScript中的一个难点。我们只有深入理解原型和继承，才能构建如谷歌一样的大型复杂应用。 参考书籍：《JavaScrip">
@@ -395,7 +395,7 @@
 <p>Object.create()适用于：不需要兴师动众的创建构造函数，而只是想<strong><em>保持两个对象类似 </em></strong>的情况。</p>
 <p>使用Object.create()所带来的问题：当给定的对象包含引用类型值的属性时，执行浅复制会只复制一个指针，这会<strong><em>导致该引用类型值的共享  </em></strong>。<br>我们来看一个栗子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a = &#123;</div><div class="line">    color: [&apos;red&apos;, &apos;blue&apos;]</div><div class="line">&#125;;</div><div class="line">var b1 = Object.create(a);</div><div class="line">b1.color;// [&quot;red&quot;, &quot;blue&quot;]</div><div class="line">b1.color.push(&apos;pink&apos;);</div><div class="line"></div><div class="line">var b2 = Object.create(a);</div><div class="line">b2.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;]</div><div class="line">b1.color.push(&apos;yellow&apos;);</div><div class="line"></div><div class="line">a.color;// [&quot;red&quot;, &quot;blue&quot;, &quot;pink&quot;, &quot;yellow&quot;]</div></pre></td></tr></table></figure></p>
 <p>我们注意到，a.color不仅属于对象a，而且还被b1和b2共享。修改三个对象中的任意一个对象的color，其他对象也都会改变。</p>
-<h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>哎呀，妈妈呀！我终于写完了！！！这是我最耗费经历的一篇博了，为了彻底理清原型和继承，我参考了很多的资料，花了很多的图，反复的看资料，反复的修改，真的不容易，好在收货了很多。学习芝士的心情贼好！！！<br>最后奉上参考的资料：<br>参考书籍：</p>
+<h1 id="最后想说"><a href="#最后想说" class="headerlink" title="最后想说"></a>最后想说</h1><p>哎呀，妈妈呀！我终于写完了！！！这是我最耗费经历的一篇博了，为了彻底理清原型和继承，我参考了很多的资料，画了很多的图，反复的看资料，反复的修改，真的不容易，好在收货了很多。学习芝士的心情贼好！！！<br>最后，奉上参考的资料：<br>参考书籍：</p>
 <ul>
 <li>《JavaScript高级程序设计（第3版）》第6章</li>
 <li>《你不知道的JavaScript（上卷）》第二部分 第5章</li>
@@ -405,6 +405,7 @@
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Objects/Object_prototypes" target="_blank" rel="external">MDN：对象原型</a></li>
 <li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Inheritance_and_the_prototype_chain" target="_blank" rel="external">MDN：继承与原型链</a></li>
 </ul>
+<p>&lt;- - - 本文 ღ 结束 - - - &gt;</p>
 
       
     </div>
