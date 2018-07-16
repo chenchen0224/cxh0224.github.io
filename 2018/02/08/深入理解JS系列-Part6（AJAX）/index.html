@@ -1,0 +1,892 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,深入理解JS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="本篇是深入理解JS系列 的Part6：AJAX。在项目中，如果我们要和后端进行数据交互，那就要学习AJAX。">
+<meta name="keywords" content="JavaScript,深入理解JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="深入理解JS系列-Part6（AJAX）">
+<meta property="og:url" content="http://yoursite.com/2018/02/08/深入理解JS系列-Part6（AJAX）/index.html">
+<meta property="og:site_name" content="风到这里就是粘">
+<meta property="og:description" content="本篇是深入理解JS系列 的Part6：AJAX。在项目中，如果我们要和后端进行数据交互，那就要学习AJAX。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-16T15:05:11.711Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="深入理解JS系列-Part6（AJAX）">
+<meta name="twitter:description" content="本篇是深入理解JS系列 的Part6：AJAX。在项目中，如果我们要和后端进行数据交互，那就要学习AJAX。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/02/08/深入理解JS系列-Part6（AJAX）/"/>
+
+
+
+
+
+  <title>深入理解JS系列-Part6（AJAX） | 风到这里就是粘</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">风到这里就是粘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/08/深入理解JS系列-Part6（AJAX）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HuaZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风到这里就是粘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">深入理解JS系列-Part6（AJAX）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-02-08T11:52:29+08:00">
+                2018-02-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>本篇是<strong><em>深入理解JS系列 </em></strong>的Part6：AJAX。在项目中，如果我们要和后端进行数据交互，那就要学习AJAX。</p>
+<a id="more"></a>
+<h2 id="什么是AJAX"><a href="#什么是AJAX" class="headerlink" title="什么是AJAX"></a>什么是AJAX</h2><p><code>Asynchronous JavaScript and XML</code></p>
+<ul>
+<li>Asynchronous<br>在AJAX中的异步不是我们理解的同步异步编程，而是泛指<code>局部刷新</code>，但是在以后的AJAX请求中尽可能使用异步获取数据（因为异步数据获取不会阻塞下面代码的执行）</li>
+<li>XML<br>XML是一种文件格式（可以把HTML理解为XML的一种）：可扩展的标记语言。<br>作用：可自己扩展一些语义标签，来存储数据和内容。=&gt;清晰的展示数据结构。</li>
+</ul>
+<h2 id="如何创建Ajax实例"><a href="#如何创建Ajax实例" class="headerlink" title="如何创建Ajax实例"></a>如何创建Ajax实例</h2><p>抛开第三方的工具和框架，原生JS实现Ajax。<br>主要考察以下几点：<br>XMLHttpRequest对象的工作流程</p>
+<ul>
+<li><p>第一步：创建一个对象<br>IE5、IE6用的是ActiveXObject对象</p>
+</li>
+<li><p>第二步：启动一个请求以备发送<br>open([Http Method], [URL], [Async] , [user-name], [user-pass])<br>规定HTTP协议的请求类型，URL地址，是否异步。</p>
+<ul>
+<li>Http Method：请求方式</li>
+<li>URL向服务器发送请求的API（Application Programming Interface） 接口地址</li>
+<li>Async设置请求的同步异步</li>
+</ul>
+</li>
+<li><p>第三步：事件监听：一般监听是readystatechange事件（<code>AJAX状态改变</code>事件），基于这个事件可以获取服务器返回的响应头、响应主体内容</p>
+<ul>
+<li>AJAX状态<br><code>0</code>：unsent =&gt;刚开始创建xhr，还没有发送<br><code>1</code>：opened =&gt;已经执行了open这个操作<br><code>2</code>：headers_received =&gt;已经发送AJAX请求（AJAX任务开始），响应头信息已经被客户端接收了（响应头中包含了：服务器的时间、返回的HTTP状态码…）<br><code>3</code>：loading =&gt;响应主体内容正在返回<br><code>4</code>：done =&gt;响应主体内容已经被客户端全部接收，可以在浏览器端使用了。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">	<span class="keyword">if</span>(xhr.readyState==<span class="number">4</span> &amp;&amp; xhr.status==<span class="number">304</span>)&#123;</div><div class="line">		<span class="comment">//=&gt;xhr.responseText;</span></div><div class="line">	&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>第四步：发送请求。<br>从这步开始，<code>当前AJAX任务开始</code>，如果AJAX是同步的，后续代码不会执行，要等到AJAX状态成功后再执行，反之异步不会。<br>xhr.send([请求主体内容]);</p>
+<ul>
+<li>没有请求主体，为null；</li>
+<li>有请求主体，一般是字符串，可能是JSON格式、XML格式、普通字符串格式的。<br>=&gt;真实项目中常用的是<code>URL-encode格式</code>的字符串（”id=1000&amp;lx=2000”）<br>响应<br>responseText获得字符串形式的响应数据。</li>
+</ul>
+</li>
+</ul>
+<p>栗子：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();<span class="comment">//=&gt;0</span></div><div class="line">xhr.open(<span class="string">'GET'</span>,<span class="string">'/temp/list'</span>,<span class="literal">true</span>);<span class="comment">//=&gt;1</span></div><div class="line">xhr.onreadystatechange=<span class="function"><span class="params">()</span>=&gt;</span>&#123;<span class="comment">//=&gt;DOM事件绑定是异步的</span></div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">2</span>)&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">4</span>)&#123;<span class="built_in">console</span>.log(<span class="number">2</span>);&#125;</div><div class="line">&#125;;</div><div class="line">xhr.send();<span class="comment">//=&gt;当前AJAX任务开始，异步</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt;3 1 2</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">'GET'</span>,<span class="string">'/temp/list'</span>,<span class="literal">true</span>);</div><div class="line">xhr.send();</div><div class="line">xhr.onreadystatechange=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">2</span>)&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">4</span>)&#123;<span class="built_in">console</span>.log(<span class="number">2</span>);&#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt;3 1 2</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">'GET'</span>,<span class="string">'/temp/list'</span>,<span class="literal">false</span>);</div><div class="line">xhr.onreadystatechange=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">2</span>)&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;<span class="comment">//=&gt;监听到了状态改变为2，但主任务队列AJAX任务没有完成，被占着，没有执行</span></div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">4</span>)&#123;<span class="built_in">console</span>.log(<span class="number">2</span>);&#125;</div><div class="line">&#125;;</div><div class="line">xhr.send();<span class="comment">//=&gt;任务开始（同步：只要当前AJAX任务没有完成，就什么也不做不了）</span></div><div class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt;2 3</span></div></pre></td></tr></table></figure>
+<p>当AJAX任务开始，由于是同步编程，主任务队列在状态没有变成4（任务结束）之前一直被这件事占用着，其它事情都做不了<br>==AJAX同步的弊端：==<br>1）阻塞下边同步代码的执行<br>2）阻碍自己状态的监听。只有在状态变为4时，才触发readystatechange事件绑定的方法。<br>（当服务器把响应头返回的时候，状态为2，触发了事件readystatechange，但是由于主任务队列没有完成，被占着呢，绑定的方法也无法执行… 所有只有状态为4的时候执行一次这个方法）<br>==AJAX任务执行的一个特殊性：==<br>当AJAX任务是同步任务时，AJAX完成会<code>优先执行自己的readystatechange事件（虽然这个事件在等待任务队列）</code>，然后才执行后边的同步代码。例如，上边的栗子输出的是2 3，而不是3 2。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> xhr=<span class="keyword">new</span> XMLHttpRequest();</div><div class="line">xhr.open(<span class="string">'GET'</span>,<span class="string">'/temp/list'</span>,<span class="literal">false</span>);</div><div class="line">xhr.send();</div><div class="line">xhr.onreadystatechange=<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">2</span>)&#123;<span class="built_in">console</span>.log(<span class="number">1</span>);&#125;</div><div class="line">   <span class="keyword">if</span>(xhr.readyState===<span class="number">4</span>)&#123;<span class="built_in">console</span>.log(<span class="number">2</span>);&#125;</div><div class="line">&#125;;</div><div class="line"><span class="built_in">console</span>.log(<span class="number">3</span>);</div><div class="line"><span class="comment">//=&gt;3</span></div></pre></td></tr></table></figure>
+<h2 id="xhr的属性和方法"><a href="#xhr的属性和方法" class="headerlink" title="xhr的属性和方法"></a>xhr的属性和方法</h2><p>[属性]</p>
+<ul>
+<li>xhr.response：响应主体内容</li>
+<li>xhr.responseText：响应主体的内容是<code>字符串</code>（JSON或XML格式字符串）</li>
+<li><p>xhr.responseXML：响应主体的内容是XML文档</p>
+</li>
+<li><p>xhr.status：返回的HTTP状态码</p>
+</li>
+<li><p>xhr.statusText：状态码的描述</p>
+</li>
+<li><p>xhr.timeout：设置请求超时的时间</p>
+</li>
+<li>xhr.withCredentials：是否允许跨域（false）</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="comment">//open</span></div><div class="line"><span class="comment">//xhr.timeout = 1000;//=&gt;请求超时会自动中断</span></div><div class="line"><span class="comment">//xhr.ontimeout = () =&gt; &#123;</span></div><div class="line"><span class="comment">//	console.log('请求超时');</span></div><div class="line"><span class="comment">//&#125;</span></div><div class="line">xhr.onabort = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'请求被强制中断'</span>);</div><div class="line">&#125;</div><div class="line"><span class="comment">//onreadystatechange</span></div><div class="line">setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</div><div class="line">	xhr.abort();</div><div class="line">&#125;,<span class="number">1000</span>);</div></pre></td></tr></table></figure>
+<p>[方法]</p>
+<ul>
+<li>xhr.open()：打开URL请求</li>
+<li>xhr.send()：发送AJAX请求</li>
+<li>xhr.abort()：强制中断AJAX请求（当前建立连接的HTTP连接通道到干掉了）</li>
+<li>xhr.setRequestHeader([key], [value])：设置请求头<br>（不能出现中文，必须在<code>open之后</code>才可以设置成功）<br>编码：<code>encodeURIComponent</code><br>解码：<code>decodeURIComponent</code></li>
+<li>xhr.getAllResponseHeaders()：获取所有的响应头信息</li>
+<li>xhr.getResponseHeader([key]) ：获取key对应的响应头信息</li>
+<li>xhr.overrideMimeType()：重写MIME类型</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">xhr.onreadystatechange = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">if</span> (!<span class="regexp">/^(2|3)\d&#123;2&#125;$/</span>.test(xhr.status)) <span class="keyword">return</span>; <span class="comment">//=&gt;证明服务器已经返回内容了（HTTP请求成功）</span></div><div class="line">    <span class="keyword">if</span> (xhr.readyState === <span class="number">2</span>) &#123;</div><div class="line">        <span class="comment">//=&gt;响应头信息已经回来了</span></div><div class="line">        <span class="keyword">let</span> time = xhr.getResponseHeader(<span class="string">'date'</span>);</div><div class="line">        <span class="built_in">console</span>.log(time, <span class="keyword">new</span> <span class="built_in">Date</span>(time));</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">if</span> (xhr.readyState === <span class="number">4</span>) &#123;</div><div class="line">        <span class="built_in">console</span>.log(xhr.responseText);</div><div class="line">    &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<ul>
+<li><code>xhr.getResponseHeader(&#39;date&#39;)</code> ：获取响应头中的服务器时间。<br><code>AJAX状态为2</code>时获取，获取的是格林尼治时间（<code>字符串</code>，中国标准时间比它多8小时）。</li>
+<li>new Date()：获取当前客户端时间（<code>对象</code>）<br>new Data(时间字符串)：把指定的时间字符串格式化为标准的北京时间（Data类的实例）<br>时间字符串的格式：常用的有，”xxxx-xx-xx xx:xx:xx”或”xxxx/xx/xx”  </li>
+</ul>
+<p>从服务器端获取时间会产生一个问题：服务器返回数据需要时间，所以客户端拿到返回的服务器时间和真实的时间是有误差的。<br>//=&gt;那么如何减小时间误差？<br>1）在AJAX为2，就从响应头中获取时间，而不是等到状态变为4  =&gt;请求方式设置为head，只获取响应头，不需要响应主体内容<br>2.特殊：即使向服务器发送一个不存在的请求地址，返回的是404状态码，但是响应头信息中都会存在服务器时间（不建议使用，不友好）</p>
+<h2 id="JQ中的AJAX"><a href="#JQ中的AJAX" class="headerlink" title="JQ中的AJAX"></a>JQ中的AJAX</h2><ol>
+<li><p>两种写法：\$.ajax([URL],[options]) 或 $.ajax([options])<br>在options中有一个url字段代表请求的URL地址<br><code>$.get</code> /<code>$.post</code> / <code>$.getJSON</code> / <code>$.getScript</code> 这些方法都是基于\$.ajax构建出来的快捷方法，项目中最常使用的还是\$.ajax</p>
+</li>
+<li><p>options的配置项：</p>
+</li>
+</ol>
+<ul>
+<li><code>url</code>：请求的API接口地址</li>
+<li><code>method</code>：请求的方式     </li>
+<li><p><code>data</code>：传递给服务器的数据<br>GET请求是基于问号传参传递过去的，POST请求是基于请求主体传递过去的 。<br>data的值可以是对象也可以是字符串：中文会自动编码</p>
+<pre><code>+ 对象类型（用的最多）：JQ会把`对象转换`为 xxx=xxx&amp;xxx=xxx 的模式（`application/x-www-form-urlencoded`）
++ 查询字符串：写什么就传递什么
+</code></pre></li>
+<li><p><code>dataType</code>：预设置获取结果的数据格式<br>支持的格式：json、jsonp、xml、html、script、text<br>（服务器返回给客户端的响应主体中的内容一般都是字符串[JSON格式居多]）<br>注意：设置返回结果为json格式 ，<code>并不会影响服务器返回的结果</code>，只是JQ内部对返回的结果进行了<code>二次处理</code>，最终转为JSON格式的对象给我们。 </p>
+</li>
+<li><p><code>async</code>：设置同步或者异步（默认true异步）</p>
+</li>
+<li><p><code>cache</code>：设置get请求下是否建立缓存，（默认true-&gt;建立缓存，false不建立缓存）。<br>当设置为false时，并且设置当前请求是get请求，JQ会在请求的URL地址末尾追加随机数（<code>时间戳</code>：<code>+( new Date() )</code>）。</p>
+</li>
+<li><p><code>success</code>：回调函数，当AJAX请求成功执行的回调函数，会把响应主体中的内容（可能二次处理了）传递给回调函数。<br>回调函数的参数：</p>
+<pre><code>result：服务器获取的结果
+textStatus：状态描述
+jqXHR：JQ封装的XHR，和原生的不太一样
+</code></pre></li>
+<li><p><code>error</code>：请求失败后执行的回调函数</p>
+</li>
+</ul>
+<ol>
+<li>局限性<br>无法解决回调地狱的问题。如果发多次AJAX请求，只能在success的回调中再次发请求，这样嵌套，可维护性很差。用的很少，现在大部分项目都是基于Promise对AJAX进行管控。</li>
+</ol>
+<h2 id="axios的AJAX"><a href="#axios的AJAX" class="headerlink" title="axios的AJAX"></a>axios的AJAX</h2><p>它是一个类库，是一个基于Promise管理的AJAX库。<br>axios只是一个<code>普通的函数</code>，在这个<code>函数上</code>（而不是它的原型上）定义了很多方法，准确的来说，axios并不是一个类。</p>
+<ol>
+<li>提供了对应请求方式的方法（例如：get/post/head/delete/put/options…）</li>
+</ol>
+<ul>
+<li><p><code>axios.get([url], [config]);</code><br>get请求中，会把<code>params中的键值对</code>拼接成URLEncode格式字符串，然后以问号传参的方式，传递给服务器，类似于JQ-AJAX中的data</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">axios.get(&apos;url&apos;, &#123;</div><div class="line">    params: &#123;</div><div class="line">        name: &apos;chen&apos;,</div><div class="line">        age: 9</div><div class="line">    &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>axios.post([url], [data], [config]);</code><br>post请求中，配置项传递的内容都相当于基于请求主体传递给服务器，但是传递给服务器的内容格式是<code>RAW</code>（<code>JSON格式的字符串</code>），不是x-www-form-urlencode</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">axios.post(&apos;url&apos;, &#123;</div><div class="line">    name: &apos;chen&apos;,</div><div class="line">    age: 9</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ol>
+<li>基于get或post发请求，返回的结果都是<code>Promise实例</code><br>基于axios发送请求，第一个then接收到的参数是一个<code>对象</code>，包含以下属性：<ul>
+<li><code>config</code>：基于axios发送请求做的配置项</li>
+<li><code>data</code>：从服务器获取的响应主体内容<br>{code: 0, data: {…}}</li>
+<li><code>headers</code>：从服务器获取的<code>响应头信息</code><br>content-type:”application/json; charset=utf-8”</li>
+<li><code>request</code>：创建的AJAX实例</li>
+<li>status：状态码</li>
+<li>statusText：状态码的描述</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">axios.get(<span class="string">'url'</span>, &#123;</div><div class="line">       params: &#123;</div><div class="line">           lx: <span class="number">12</span></div><div class="line">       &#125;</div><div class="line">   &#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">       <span class="comment">//console.log(result);//=&gt;获取的结果是一个对象</span></div><div class="line">       <span class="keyword">let</span> &#123;data&#125; = result;</div><div class="line">   &#125;).catch(<span class="function"><span class="params">msg</span> =&gt;</span> &#123;</div><div class="line">       <span class="built_in">console</span>.log(msg);<span class="comment">//=&gt;请求失败的原因</span></div><div class="line">   &#125;);</div></pre></td></tr></table></figure>
+<p>基于axios解决回调地狱：<br>先请求A，A完成做什么，然后请求B，B完成做什么。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">axios.get(<span class="string">'urlA'</span>, &#123;</div><div class="line">    params: &#123;</div><div class="line">        lx: <span class="number">12</span></div><div class="line">    &#125;</div><div class="line">&#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> &#123;data&#125; = result;</div><div class="line">    <span class="comment">//...</span></div><div class="line">    <span class="keyword">return</span> axios.post(<span class="string">'urlB'</span>);</div><div class="line">&#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">    <span class="keyword">let</span> &#123;data&#125; = result;<span class="comment">//=&gt;result是B成功后的结果</span></div><div class="line">    <span class="built_in">console</span>.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure></p>
+<ol>
+<li>一次并发多个请求：<code>axios.all([ary])</code><br>适用于多个请求都完成后做什么。<br>执行then方法，接收到的参数是一个<code>数组</code>，分别存放每一个请求返回的结果。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> sendAry = [</div><div class="line">    axios.get(<span class="string">'urlA'</span>),</div><div class="line">    axios.get(<span class="string">'urlB'</span>),</div><div class="line">    axios.post(<span class="string">'urlC'</span>)</div><div class="line">];</div><div class="line"><span class="comment">//=&gt;三个请求都完成才做一些事情（可以基于ALL实现）</span></div><div class="line">axios.all(sendAry).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(result);<span class="comment">//=&gt;是一个数组，分别存储每一个请求的结果</span></div><div class="line">    <span class="keyword">let</span> [resA, resB, resC] = result;</div><div class="line">    <span class="comment">//axios.spread((resA, resB, resC) =&gt; &#123;&#125;</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><code>axios.spread()</code>：请求都完成触发这个函数<br>原理是JS中的柯理化函数思想<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> <span class="title">spread</span>(<span class="params">callback</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">wrap</span>(<span class="params">arr</span>) </span>&#123;</div><div class="line">        <span class="keyword">return</span> callback.apply(<span class="literal">null</span>, arr);</div><div class="line">    &#125;;</div><div class="line">&#125;;</div><div class="line">axios.all(sendAry).then(axios.spread(<span class="function">(<span class="params">resA, resB, resC</span>) =&gt;</span> &#123;</div><div class="line">    <span class="comment">//=&gt;RES-A/-B/-C分别代表三次请求的结果</span></div><div class="line">&#125;));</div></pre></td></tr></table></figure></p>
+<ol>
+<li>初始化常用的一些配置项<br>全局配置：</li>
+</ol>
+<ul>
+<li><p>基础URL<br><code>后台服务器URL的统一前缀统一提取</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">axios.defaults.baseURL = &apos;https://www.easy-mock.com/mock/5b0412beda8a195fb0978627/temp&apos;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>设置拦截器<br>设置响应拦截器：分别在响应成功和失败的时候做一些拦截处理（在响应成功后设定的方法之前，会先执行拦截器中的方法）</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">    axios.interceptors.response.use(<span class="function"><span class="keyword">function</span> <span class="title">success</span>(<span class="params">result</span>) </span>&#123;</div><div class="line">	    <span class="comment">//=&gt;成功之前拦截</span></div><div class="line">        <span class="keyword">return</span> result.data;<span class="comment">//=&gt;传给下边then方法的result</span></div><div class="line">    &#125;, <span class="function"><span class="keyword">function</span> <span class="title">error</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	    <span class="comment">//=&gt;失败之前拦截</span></div><div class="line">    &#125;);</div><div class="line">    <span class="comment">//=&gt;使用</span></div><div class="line">    axios.get(<span class="string">'/list'</span>, &#123;</div><div class="line">        params: &#123;</div><div class="line">            lx: <span class="number">12</span></div><div class="line">        &#125;</div><div class="line">    &#125;).then(<span class="function"><span class="params">result</span> =&gt;</span> &#123;<span class="comment">//=&gt;拦截这个方法的执行</span></div><div class="line">        <span class="built_in">console</span>.log(result);</div><div class="line">    &#125;);</div><div class="line"><span class="string">``</span><span class="string">`    </span></div><div class="line"><span class="string">- `</span>transformRequest<span class="string">`选项允许我们在请求发送到服务器之前对请求的数据做出一些改动</span></div><div class="line"><span class="string">只适用于以下请求方式：`</span>put/post/patch<span class="string">`</span></div><div class="line"><span class="string">`</span><span class="string">``</span>javascript</div><div class="line">	<span class="comment">//=&gt;将请求主体内容格式化为xxx-www-urlencode格式</span></div><div class="line">    axios.defaults.transformRequest = <span class="function"><span class="params">data</span> =&gt;</span> &#123;</div><div class="line">        <span class="comment">//=&gt;DATA:就是请求主体中需要传递给服务器的内容（对象）</span></div><div class="line">        <span class="keyword">let</span> str = <span class="string">``</span>;</div><div class="line">        <span class="keyword">for</span> (<span class="keyword">let</span> attr <span class="keyword">in</span> data) &#123;</div><div class="line">            <span class="keyword">if</span> (data.hasOwnProperty(key)) &#123;</div><div class="line">                str += <span class="string">`<span class="subst">$&#123;key&#125;</span>=<span class="subst">$&#123;data[key]&#125;</span>&amp;`</span>;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> str.substring(<span class="number">0</span>, str.length - <span class="number">1</span>);</div><div class="line">    &#125;;</div><div class="line">    <span class="comment">//qs.stringify(data)</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>qs插件的两个方法：<br><code>qs.parse()</code><br><code>qs.stringify()</code></p>
+<ul>
+<li><p>定义哪些状态码是成功</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">axios.defaults.validateStatus = function validateStatus(status) &#123;</div><div class="line">    //=&gt;自定义成功失败规则：RESOLVE / REJECT（默认规则：状态码以2开头算作成功）</div><div class="line">    return /^(2|3)\d&#123;2&#125;$/.test(status);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+</li>
+<li><p>定义<code>请求头</code><br>注意：结果result中的headers是响应头的信息。</p>
+</li>
+<li>定义请求主体</li>
+<li>定义请求超时时间 </li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">    //=&gt;一般不定义为公共的</div><div class="line">    axios.defaults.timeout = 3000;</div><div class="line">    axios.defaults.headers=&#123;</div><div class="line">        name:&apos;chen&apos;</div><div class="line">    &#125;;</div><div class="line">    axios.defaults.params=&#123;&#125;;//=&gt;GET传参</div><div class="line">    axios.defaults.data=&#123;&#125;;//=&gt;POST传参</div><div class="line">``` </div><div class="line"></div><div class="line">使用： 一般全局配置常用基础URL、拦截器、请求主体、状态码这几个。</div><div class="line">注意：在请求中的配置要高于全局默认配置的。</div></pre></td></tr></table></figure>
+<pre><code>//=&gt;使用
+axios.get(&apos;/list&apos;, {
+    params: {
+        lx: 12
+    },
+    headers: {xxx: &apos;xxx&apos;}//=&gt;作为请求头传递进去
+}).then(result =&gt; {
+    console.log(result);
+    //=&gt;result.headers：服务器返回的响应头信息
+});
+
+//=&gt;POST：三个参数 axios.post(url[,data][,config])
+axios.post(&apos;/add&apos;, {
+    lx: 12,
+    sex: 1
+}, {
+    headers: {xxx: &apos;xxx&apos;}//=&gt;作为请求头传递进去
+}).then(result =&gt; {
+    console.log(result);
+});
+</code></pre><p>```</p>
+<p>&lt;- - - 本文 ღ 结束 - - - &gt;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/深入理解JS/" rel="tag"># 深入理解JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/01/16/深入理解JS系列-Part5（异步）/" rel="next" title="深入理解JS系列-Part5（异步）">
+                <i class="fa fa-chevron-left"></i> 深入理解JS系列-Part5（异步）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/03/02/深入理解JS系列-Part7（跨域）/" rel="prev" title="深入理解JS系列-Part7（跨域）">
+                深入理解JS系列-Part7（跨域） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/head.jpg"
+              alt="HuaZ" />
+          
+            <p class="site-author-name" itemprop="name">HuaZ</p>
+            <p class="site-description motion-element" itemprop="description">从现在开始，种一棵树</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huaz224" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是AJAX"><span class="nav-number">1.</span> <span class="nav-text">什么是AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何创建Ajax实例"><span class="nav-number">2.</span> <span class="nav-text">如何创建Ajax实例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#xhr的属性和方法"><span class="nav-number">3.</span> <span class="nav-text">xhr的属性和方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JQ中的AJAX"><span class="nav-number">4.</span> <span class="nav-text">JQ中的AJAX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#axios的AJAX"><span class="nav-number">5.</span> <span class="nav-text">axios的AJAX</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HuaZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

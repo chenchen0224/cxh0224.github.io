@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="JavaScript,深入理解JS," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/logo.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="框架篇之react-router：本篇主要总结SPA单页面以及在react中怎么使用路由来跳转页面。">
+<meta name="keywords" content="JavaScript,深入理解JS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="框架篇之react-router">
+<meta property="og:url" content="http://yoursite.com/2018/04/22/框架篇之react-router/index.html">
+<meta property="og:site_name" content="风到这里就是粘">
+<meta property="og:description" content="框架篇之react-router：本篇主要总结SPA单页面以及在react中怎么使用路由来跳转页面。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-16T15:24:22.834Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="框架篇之react-router">
+<meta name="twitter:description" content="框架篇之react-router：本篇主要总结SPA单页面以及在react中怎么使用路由来跳转页面。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.2',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/04/22/框架篇之react-router/"/>
+
+
+
+
+
+  <title>框架篇之react-router | 风到这里就是粘</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">风到这里就是粘</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/22/框架篇之react-router/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="HuaZ">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="风到这里就是粘">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">框架篇之react-router</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-22T20:55:55+08:00">
+                2018-04-22
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/读书笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">读书笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><strong><em>框架篇之react-router</em></strong>：本篇主要总结SPA单页面以及在react中怎么使用路由来跳转页面。</p>
+<a id="more"></a>
+<p>什么时候用路由？同一个区域展示不同的内容</p>
+<h1 id="SPA"><a href="#SPA" class="headerlink" title="SPA"></a>SPA</h1><ol>
+<li>SPA与MPA<br>SPA：（single page）单页面应用，只有一个页面，所有需要展示的内容都在这一个页面中切换，webpack中只需要配置一个入口（移动端居多 或者  PC端管理系统类也是单页面应用为主）。<br>MPA：（multi page web application）多页面应用，一个项目由很多页面组成，使用这个产品，主要是页面之间的跳转（PC端多页面应用居多）：基于框架开发时，需要在webpack中配置多入口，每一个入口对应一个页面。</li>
+<li><p>如何实现单页面应用？<br>1）如果项目是基于服务器渲染的，后台语言中可以基于include等技术，把很多部分拼凑在一起，实现组件化或插件化开发，也可以实现单页面应用。<br>2）基于iframe实现单页面应用（父页面可以嵌入子页面，一个iframe通过修改的src切换不同的子页面）。<br>3）模块化开发：<br>AMD：require.js<br>CMD：sea.js<br>基于这些思想把每一部分单独写成一个模块，最后基于grunt/gulp/fis等自动化工具，最后把所有的模块都合并到首页面中（包括HTML、CSS、JS都合并在一起），通过控制哪些模块的显示隐藏来实现单页面应用开发。<br>弊端：由于首页中的内容包含了 所有模块的信息，所以第一次加载速度很慢。<br>4）基于vue、react的路由实现SPA单页面应用，基于webpack打包等。</p>
+</li>
+<li><p>BrowserRouter和HashRouter</p>
+</li>
+</ol>
+<ul>
+<li><p>BrowserRouter：浏览器路由<br>是基于H5的history API（pushState，replaceState，popState）来保持UI和URL的同步，真实项目中应用的不多。一般只有当前项目是基于服务器端渲染的，才会使用浏览器路由。</p>
+</li>
+<li><p>HashRouter：哈希路由<br>一般前后端分离的项目使用哈希路由。一个HTML页面通过不同的HASH值呈现不同的组件。它基于原生JS构造了一套类似于history API的机制。每一次路由的切换都是基于history stack（历史栈）完成的。</p>
+<ul>
+<li>当前项目一旦使用HashRouter，则默认在页面的地址后面加’#/‘，也就是HASH默认值是一个斜杠，一般让其显示首页内容</li>
+<li>HashRouter中<code>只有一个子元素</code></li>
+<li>根据哈希地址不同，展示不同的组件内容，此时需要使用Route组件</li>
+</ul>
+</li>
+</ul>
+<p>#Route组件<br>Route组件，可以设置一些属性：</p>
+<ul>
+<li>path：匹配哈希后面的值<br>匹配规则：页面的哈希值必须完全包含完整path的值（不多也不少），<code>非严格匹配</code>。Route<code>不设置path</code>是匹配所有URL地址。<br>例如：<br>path=’/‘ ：和它匹配的地址只有要斜杠即可（都能和它匹配）<br>path=’/user’：“#/user/login”也可以匹配，但是“#/user2”这个无法匹配</li>
+</ul>
+<ul>
+<li><code>exact</code>：path匹配严格（只有URL的hash值和path设定的值相等才可以匹配到）<br>strict也是严格匹配，不常用</li>
+<li>component：哈希值和当前Route的path相同，则渲染component指定的组件</li>
+<li>render：当页面的hash地址和path匹配，会把render规划的方法执行。<br>  一般在render中<code>处理权限校验</code>。（在组件渲染之前，没有权限不渲染这个组件）。</li>
+<li>push：如果设置了这个属性，当前跳转的地址会加入到history stack中一条记录</li>
+<li>from：设置当前来源页面地址<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">import &#123;HashRouter, Route, Switch, Redirect&#125; from &apos;react-router-dom&apos;;</div><div class="line">//=&gt;A B C 三个组件</div><div class="line">ReactDOM.render(&lt;HashRouter&gt;</div><div class="line">    &lt;Switch&gt;//如果可以匹配多个，Switch只匹配第一个</div><div class="line">        &lt;Route path=&apos;/&apos; exact component=&#123;A&#125;/&gt;</div><div class="line">        &lt;Route path=&apos;/user&apos; component=&#123;B&#125;/&gt;&#123;/*#/user/login*/&#125;</div><div class="line">        &lt;Route path=&apos;/pay&apos; component=&#123;C&#125; render=&#123;() =&gt; &#123;</div><div class="line">            let flag = localStorage.getItem(&apos;FLAG&apos;);</div><div class="line">            if (flag &amp;&amp; flag === &apos;safe&apos;) &#123;</div><div class="line">                return &lt;C/&gt;;</div><div class="line">            &#125;</div><div class="line">            return &apos;当前环境不安全，不利于支付！&apos;;</div><div class="line">        &#125;&#125;/&gt;</div><div class="line">    &lt;/Switch&gt;</div><div class="line">&lt;/HashRouter&gt;, root);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>默认情况下，会和每一个Route都做校验（哪怕之前已经有校验成功的）。Switch组件可以解决这个问题，只要有一种情况校验成功，就不再往后校验了。</p>
+<p>以上都不符合的情况下，认为路由地址是非法地址，做一些特殊处理</p>
+<ul>
+<li>处理为404</li>
+<li>也可以重定向：<pre><code>to=[string]： 重新定向到新的地址
+to=[object]：
+ {
+  pathName: 定向的地址,
+    search: 给定向的地址问号传参,（真实项目，会根据是否存在问号参数值来判断是正常进入首页还是非正常跳转过来的，也有根据问号传参值做不同的事情）
+    state: 给定向后的组件传递一些信息
+    } 
+</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&lt;Switch&gt;</div><div class="line">    &#123;/*处理404*/&#125;</div><div class="line">    &lt;Route render=&#123;() =&gt; &#123;</div><div class="line">        return &lt;div&gt;404&lt;/div&gt;</div><div class="line">    &#125;&#125;/&gt;</div><div class="line">    &#123;/*也可以重定向：to重新定向到新的地址*/&#125;</div><div class="line">    &lt;Redirect to=&apos;/&apos;/&gt;</div><div class="line">&lt;Redirect to=&#123;&#123;</div><div class="line">    pathname: &apos;/&apos;,</div><div class="line">    search: &apos;?lx=404&apos;</div><div class="line">&#125;&#125;/&gt;</div><div class="line">&lt;Redirect from=&apos;/360buy&apos; to=&apos;/jd&apos;/&gt;</div><div class="line">&lt;/Switch&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h1 id="Link和NavLink组件"><a href="#Link和NavLink组件" class="headerlink" title="Link和NavLink组件"></a>Link和NavLink组件</h1><ol>
+<li>Link组件是react-router中提供的路由切换组件，基于它可以实现<code>点击时切换路由</code>。<br>react-router中提供的组件都要在<code>任何一个Router（常用HashRouter）包裹的范围内</code>使用。</li>
+</ol>
+<ul>
+<li>to[string] ：跳转到指定的路由地址</li>
+<li>to[object] ：可以提供一些参数配置项<br>{<br>pathname：跳转地址<br>serach：问号传参<br>state：基于这种方式传递信息值<br>}</li>
+<li>replace[boolean]：默认为false，是替换history stack中当前的地址（true），还是追加一个新的地址（false）</li>
+</ul>
+<p>原理：基于Link组件渲染，渲染后的结果就是a标签，to对应的信息最后会变为href中的内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;Link className=&apos;navbar-brand&apos; to=&#123;&#123;</div><div class="line">                    pathname: &apos;/&apos;,</div><div class="line">                    search: &apos;?lx=logo&apos;</div><div class="line">                &#125;&#125;&gt;我的CRM&lt;/Link&gt;</div><div class="line">&lt;a class=&quot;navbar-brand&quot; href=&quot;#/?lx=logo&quot;&gt;my CRM&lt;/a&gt;</div></pre></td></tr></table></figure></p>
+<ol>
+<li>NavLink和Link类似，都是为了实现路由切换跳转的。<br>=&gt;<br>不同的在于：NavLink组件在<code>当前页面URL的HASH地址和组件to对应地址相匹配</code>时，会默认给组件加一个active样式类，让其有选中态。并不是点击谁就有active类名。<br>和Link类似，to和replace属性都有，用法一样</li>
+</ol>
+<ul>
+<li>activeClassName：把默认加的active样式类改为自己的</li>
+<li>activeStyle：给匹配的这个NavLink设置行内样式</li>
+<li>exact &amp; strict：控制是否是严格匹配</li>
+<li>isActive：匹配后执行对应的函数<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;NavLink to=&apos;/custom&apos;&gt;//最后也会转换为a标签，如果当前页面的hash地址和此组件中的to地址匹配了，则会给渲染后的A标签设置默认的样式类：active</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>所有经过路由管控的组件，当URL的hash和path后面的地址匹配后，组件才会重新渲染。不经路由管控的组件，点击NavLink，不会重新渲染组件。</p>
+<h1 id="withRouter组件"><a href="#withRouter组件" class="headerlink" title="withRouter组件"></a>withRouter组件</h1><p>作用：把一个非路由管控的组件，模拟成为路由管控的组件。<br>先把Nav基于connect高阶一下，返回的是一个代理组件Proxy，把返回的代理组件受路由管控即可。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">import &#123;withRouter&#125; from &apos;react-router-dom&apos;;</div><div class="line">export default withRouter(connect()(Nav));</div></pre></td></tr></table></figure></p>
+<h1 id="history-stack"><a href="#history-stack" class="headerlink" title="history stack"></a>history stack</h1><p>受路由管控组件的特点：</p>
+<ul>
+<li>只有当前页面的哈希地址和路由指定的地址匹配，才会把对应的组件渲染。<br>withRouter比较特殊：如果没有地址匹配，会被模拟为受路由管控的</li>
+<li>路由切换的原理：凡是匹配的路由，都会把对应的组件内容重新添加到页面中，相反，不匹配的都会在页面中移除掉，下一次重新匹配上，组件需要重新渲染到页面中：每一次路由切换时（页面的哈希路由地址改变），都会从一级路由开始重新校验一遍。</li>
+<li>所有受路由管控的组件，在组件的属性上，都默认添加了3个属性：    <ul>
+<li>history：<ul>
+<li>go()：跳转到指定的地址（数字：0-当前，-1-上一个，-2上两个）</li>
+<li>push()：向池子中追加一条新的信息，达到切换到指定的路由地址的目的。</li>
+<li>goBack()：相当于go(-1)，回退到上一个地址</li>
+<li>goForward()：相当于go(1)，向前走一步</li>
+</ul>
+</li>
+<li>location：获取当前哈希路由渲染组件的一些信息 <ul>
+<li>pathname：当前哈希路由地址</li>
+<li>search：当前页面的问号传参值</li>
+<li>state：基于Redirect/Link/NavLink中的to，传递的是一个对象，对象中编写的state，就可以在location.state中获取到</li>
+</ul>
+</li>
+<li>match：获取的是当前路由匹配的结果<ul>
+<li>params：获取的是当前路由匹配的是<code>地址路径参数</code>，则这里可以获取传递参数的值<br>方法：this.popps.history.push(‘/plan’)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>history stack：历史信息栈（池子）<br>每一次路由的切换，不是替换现有的地址，就是新增一条地址。</p>
+<p><code>基于render返回的组件是不受路由管控的组件</code>，没有这三个属性。</p>
+<h1 id="【列表详情模型】"><a href="#【列表详情模型】" class="headerlink" title="【列表详情模型】"></a><code>【列表详情模型】</code></h1><p>在SPA路由管控的项目当中，从列表跳转到详情，需要传递一些信息给详情组件，以此来展示不同的信息，传递给详情页信息的方式有：<br>[不推荐的]</p>
+<ul>
+<li>本地存储</li>
+<li>redux存储<br>=&gt;点击列表中某一项时，把信息存储到本地或redux中，跳转到详情页面，把信息从本地或redux中获取即可</li>
+</ul>
+<p>[推荐]</p>
+<ul>
+<li><p><code>问号传参</code>（随便刷新）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//list页</div><div class="line">&lt;Link to=&#123;&#123;</div><div class="line">    pathname: &apos;/custom/detail&apos;,</div><div class="line">    search:`?id=$&#123;id&#125;`</div><div class="line">&#125;&#125;&gt;</div><div class="line">    //...</div><div class="line">&lt;/Link&gt;</div><div class="line">//detail页</div><div class="line">let search = this.props.location.search,//&apos;?id=1&apos;</div><div class="line">    curID = qs.parse(search.substr(1)).id || 0;</div><div class="line">curID = parseFloat(curID);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>基于state传值</code>（弊端：一旦页面刷新，上一次传递的state值就没有了）<br>适合支付页面。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">//list页</div><div class="line">&lt;Link to=&#123;&#123;</div><div class="line">    pathname: &apos;/custom/detail&apos;,</div><div class="line">    state:`$&#123;id&#125;`</div><div class="line">&#125;&#125;&gt;</div><div class="line">    //...</div><div class="line">&lt;/Link&gt;</div><div class="line">//detail页</div><div class="line">let state = this.props.location.state,//&apos;1&apos;</div><div class="line">    curID = state || 0;</div><div class="line">curID = parseFloat(curID);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>URL地址参数</code>：（把参数当做地址的一部分）<br>path = ‘custom/detail/:id’<br>第一步：在路由中配置动态路径参数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//custom页</div><div class="line">&lt;Route path=&apos;/custom/detail/:id&apos; component=&#123;Detail&#125;/&gt;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>第二步：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">//list页</div><div class="line">  &lt;Link to=&#123;&#123;</div><div class="line">      //pathname: &apos;/custom/detail&apos;,</div><div class="line">      pathname: `/custom/detail/$&#123;id&#125;`,//3.URL地址参数</div><div class="line">  &#125;&#125;&gt;</div><div class="line">      //...</div><div class="line">  &lt;/Link&gt;</div></pre></td></tr></table></figure></p>
+<p>第三步：this.props.match.params.id来获取<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">//detail页</div><div class="line">let params = this.props.match.params,//&#123;id: &quot;34&quot;&#125;</div></pre></td></tr></table></figure></p>
+<p>&lt;- - - 本文 ღ 结束 - - - &gt;</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/深入理解JS/" rel="tag"># 深入理解JS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/04/07/框架篇之react/" rel="next" title="框架篇之react">
+                <i class="fa fa-chevron-left"></i> 框架篇之react
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/17/框架篇之redux/" rel="prev" title="框架篇之redux">
+                框架篇之redux <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          
+            <img class="site-author-image" itemprop="image"
+              src="/images/head.jpg"
+              alt="HuaZ" />
+          
+            <p class="site-author-name" itemprop="name">HuaZ</p>
+            <p class="site-description motion-element" itemprop="description">从现在开始，种一棵树</p>
+        </div>
+
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+            
+              <a href="/archives/">
+            
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/huaz224" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>GitHub</a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SPA"><span class="nav-number">1.</span> <span class="nav-text">SPA</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Link和NavLink组件"><span class="nav-number">2.</span> <span class="nav-text">Link和NavLink组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#withRouter组件"><span class="nav-number">3.</span> <span class="nav-text">withRouter组件</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#history-stack"><span class="nav-number">4.</span> <span class="nav-text">history stack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#【列表详情模型】"><span class="nav-number">5.</span> <span class="nav-text">【列表详情模型】</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">HuaZ</span>
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.2</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.2"></script>
+
+
+
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
